@@ -1,0 +1,19 @@
+User-agent: *
+Allow: /
+
+# Disallow private/admin areas
+Disallow: /_site/
+Disallow: /_data/
+Disallow: /_includes/
+Disallow: /_layouts/
+Disallow: /_sass/
+
+# Disallow specific legal and imprint pages
+Disallow: /pages/legal_de.html
+Disallow: /pages/legal_en.html
+Disallow: /pages/imprint_de.html
+Disallow: /pages/imprint_en.html
+
+# Allow other content
+Allow: /pages/
+Allow: /assets/
