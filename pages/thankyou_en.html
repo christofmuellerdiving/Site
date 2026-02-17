@@ -16,11 +16,11 @@
   <meta name="author" content="Christof Müller" />
   <link
     rel="canonical"
-    href="/404.html"
+    href="/pages/thankyou_en.html"
   />
 
   <title>
-    Page Not Found | Christof Müller
+    Christof Müller
   </title>
 
   <!-- Bootstrap core CSS -->
@@ -70,24 +70,13 @@
 
   <!-- Page container change top padding when nav shrinks -->
   
-  <style>
-    #pagecontainer {
-      padding-top: 100px;
-    }
-    @media only screen and (max-width: 991px) {
-      #pagecontainer {
-        padding-top: 100px;
-      }
-    }
-  </style>
-  
 </head>
 
 
   <body id="page-top">
       
   <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav" data-hidewithscroll="true">
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav" data-hidewithscroll="hideScroll">
     <div class="container">
       <!-- <a class="navbar-brand js-scroll-trigger" href="#page-top"> -->
         <a class="navbar-brand js-scroll-trigger" href="javascript:goTo('index','page-top','/pages', 'en')">Christof Müller</a>
@@ -144,34 +133,39 @@
   </nav>
 
   <script src="/assets/js/custom.js?v=1771356643"></script>
-  <!-- End Navigation --> 
-<script>
-  document.getElementById("page-top").className = "bgBlack";
-</script>
- 
-<div class="container" id="pagecontainer"><section class="page-section">
-  <div class="container">
-    <div class="container" id="pagecontainer">
-      <div class="row">
-        <div class="col-lg-12 text-center">
-          <h2 class="section-heading text-uppercase" style="color: white">
-            404 - Page Not Found
-          </h2>
-          <h3 class="section-subheading text-muted" style="color: white">
-            The requested page could not be found !!!
-          </h3>
-          <a
-          class="btn btn-outline-light btn-xl text-uppercase "
-          href="javascript:history.go(-1)"
-          >Back</a
+  <!-- End Navigation -->
+
+<div class="container" id="pagecontainer">
+
+    
+<!-- P_FAQ -->
+
+<section class="page-section" id="content">
+    <div class="container">
+
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <h2 class="section-heading text-uppercase"><p>Thank you for your message</p>
+</h2>
+            <img class="mx-auto" src="/assets/img/contact.jpg?v=1771356643" alt="">
+            <h3 class="section-subheading text-muted"><p>Christof will get in touch with you soon.</p>
+ </h3>
+          </div>
         </div>
-      </div>
+        <div class="col text-center">
+          <a
+          class="btn btn-outline-primary btn-lg"
+          href="/"
+          
+          >Home</a>
+        </div>
     </div>
-  </div>
 </section>
+<!-- End P_FAQ -->
+
+
+
 </div>
-
-
 
 
 	  <!-- Footer -->
@@ -225,19 +219,6 @@
     
   </div>
 </footer>
-
-<script>
-  fixPageShort();
-  function fixPageShort() {
-    if (window.innerHeight > document.body.offsetHeight) {
-      document.getElementById("footer").style.position = "fixed";
-      document.getElementById("footer").style.bottom = 0;
-      document.getElementById("footer").style.right = 0;
-      document.getElementById("footer").style.left = 0;
-      document.getElementById("footer").style.width = "100%";
-    }
-  }
-</script>
 
 <!-- End Footer -->
 
