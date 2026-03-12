@@ -140,6 +140,9 @@ tr:nth-child(even) {
   font-family: "Poppins", sans-serif;
   z-index: 100;
 }
+#mainNav .navbar-brand img {
+  transition: height 0.3s;
+}
 #mainNav .navbar-brand.active, #mainNav .navbar-brand:active, #mainNav .navbar-brand:focus, #mainNav .navbar-brand:hover {
   font-weight: bold;
 }
@@ -183,6 +186,9 @@ tr:nth-child(even) {
   #mainNav.navbar-shrink .navbar-brand {
     font-size: 1.25em;
     padding: 12px 0;
+  }
+  #mainNav.navbar-shrink .navbar-brand img {
+    height: 40px !important;
   }
 }
 .nav-select {
@@ -812,6 +818,54 @@ ul.social-buttons li a {
 }
 ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons li a:hover {
   background-color: #54bfff;
+}
+
+.uc-card {
+  background: #fff;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: box-shadow 0.2s ease;
+}
+.uc-card:hover {
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.1);
+}
+
+.uc-card-date {
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #54bfff;
+}
+
+.uc-card-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #343a40;
+  flex-grow: 1;
+}
+
+.uc-card-spots {
+  font-size: 0.85rem;
+  color: #868e96;
+}
+
+.uc-spots {
+  display: inline-block;
+  background: #e8f5e9;
+  color: #2e7d32;
+  border-radius: 4px;
+  padding: 0.15em 0.55em;
+  font-weight: 600;
+}
+
+.uc-book-btn {
+  align-self: flex-start;
+  margin-top: 0.5rem;
 }
 
 /*# sourceMappingURL=agency.css.map */
