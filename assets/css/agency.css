@@ -11,7 +11,7 @@ a {
   color: #0d6efd;
 }
 a:hover {
-  color: rgb(33, 171.9122807018, 255);
+  color: #21acff;
 }
 
 .text-primary {
@@ -108,8 +108,8 @@ tr:nth-child(even) {
   border-color: #54bfff;
 }
 .btn-primary:active, .btn-primary:focus, .btn-primary:hover {
-  background-color: rgb(45.75, 176.6842105263, 255) !important;
-  border-color: rgb(45.75, 176.6842105263, 255) !important;
+  background-color: #2eb1ff !important;
+  border-color: #2eb1ff !important;
   color: white;
 }
 .btn-primary:active, .btn-primary:focus {
