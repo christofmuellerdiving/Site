@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 
   <head>
   
@@ -39,7 +39,7 @@
     crossorigin="anonymous"
   />
 
-  <link href="/assets/css/all.min.css?v=1773400563" rel="stylesheet" type="text/css" />
+  <link href="/assets/css/all.min.css?v=1773416004" rel="stylesheet" type="text/css" />
 
   
 
@@ -66,20 +66,9 @@
   
   <!-- Custom styles for this theme -->
   <!--<link href="assets/css/agency.min.css" rel="stylesheet">-->
-  <link href="/assets/css/agency.css?v=1773400563" rel="stylesheet" />
+  <link href="/assets/css/agency.css?v=1773416004" rel="stylesheet" />
 
   <!-- Page container change top padding when nav shrinks -->
-  
-  <style>
-    #pagecontainer {
-      padding-top: 100px;
-    }
-    @media only screen and (max-width: 991px) {
-      #pagecontainer {
-        padding-top: 100px;
-      }
-    }
-  </style>
   
 </head>
 
@@ -90,7 +79,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav" data-hidewithscroll="true">
     <div class="container">
       <!-- <a class="navbar-brand js-scroll-trigger" href="#page-top"> -->
-        <a class="navbar-brand js-scroll-trigger" href="javascript:goTo('index','page-top','/pages', 'en')"><img height="50" src="/assets/img/logo.png" alt="Christof Müller" /></a>
+        <a class="navbar-brand js-scroll-trigger" href="javascript:goTo('index','page-top','/pages', 'de')"><img height="50" src="/assets/img/logo.png" alt="Christof Müller" /></a>
       <button class="navbar-toggler navbar-toggler-right collapsed" type="button" 
         data-bs-toggle="collapse"
 
@@ -115,12 +104,12 @@
 
                 
                 <option style="font-size:48px" value="en" 
-                 selected="selected" >
+                >
                   EN
                 </option>
                 
                 <option style="font-size:48px" value="de" 
-                >
+                 selected="selected" >
                   DE
                 </option>
                 
@@ -130,24 +119,24 @@
           </li>
           
           
-          <li class="nav-item"><a class="nav-link js-scroll-trigger" href="javascript:goTo('index','about','/pages', 'en')">About</a></li>
+          <li class="nav-item"><a class="nav-link js-scroll-trigger" href="javascript:goTo('index','about','/pages', 'de')">Über Christof Müller</a></li>
           
           
-          <li class="nav-item"><a class="nav-link js-scroll-trigger" href="javascript:goTo('index','courses','/pages', 'en')">Courses</a></li>
+          <li class="nav-item"><a class="nav-link js-scroll-trigger" href="javascript:goTo('index','courses','/pages', 'de')">Kurse</a></li>
           
           
           
           
-          <li class="nav-item"><a class="nav-link js-scroll-trigger" href="javascript:goTo('index','xdeep','/pages', 'en')">xDeep</a></li>
+          <li class="nav-item"><a class="nav-link js-scroll-trigger" href="javascript:goTo('index','xdeep','/pages', 'de')">xDeep</a></li>
           
           
-          <li class="nav-item"><a class="nav-link js-scroll-trigger" href="javascript:goTo('index','timeline','/pages', 'en')">Testimonials</a></li>
+          <li class="nav-item"><a class="nav-link js-scroll-trigger" href="javascript:goTo('index','timeline','/pages', 'de')">Referenzen</a></li>
           
           
-          <li class="nav-item"><a class="nav-link js-scroll-trigger" href="javascript:goTo('index','moreinfo','/pages', 'en')">MoreInfo</a></li>
+          <li class="nav-item"><a class="nav-link js-scroll-trigger" href="javascript:goTo('index','moreinfo','/pages', 'de')">Mehr Infos</a></li>
           
           
-          <li class="nav-item"><a class="nav-link js-scroll-trigger" href="javascript:goTo('contact','contact','/pages', 'en')">Contact</a></li>
+          <li class="nav-item"><a class="nav-link js-scroll-trigger" href="javascript:goTo('contact','contact','/pages', 'de')">Kontakt</a></li>
           
           
         </ul>
@@ -155,35 +144,43 @@
     </div>
   </nav>
 
-  <script src="/assets/js/custom.js?v=1773400563"></script>
-  <!-- End Navigation --> 
+  <script src="/assets/js/custom.js?v=1773416004"></script>
+  <!-- End Navigation -->
+
 <script>
-  document.getElementById("page-top").className = "bgBlack";
+  // On the 404 page there are no navigable sections, so always redirect to the target page.
+  window.goTo = function(base, section, folder, locale) {
+    window.location.href = folder + '/' + base + '_' + locale + '.html#' + section;
+  };
 </script>
- 
-<div class="container" id="pagecontainer"><section class="page-section">
+<section class="showcase page-section" id="blank">
   <div class="container">
-    <div class="container" id="pagecontainer">
-      <div class="row">
-        <div class="col-lg-12 text-center">
-          <h2 class="section-heading text-uppercase" style="color: white">
-            404 - Page Not Found
-          </h2>
-          <h3 class="section-subheading text-muted" style="color: white">
-            The requested page could not be found !!!
-          </h3>
-          <a
-          class="btn btn-outline-light btn-xl text-uppercase "
-          href="javascript:history.go(-1)"
-          >Back</a
+    <div class="carouselSlider">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img
+            src="/assets/img/background/2.jpg"
+            class="d-block mainImage"
+            alt="Page not found"
+          />
         </div>
       </div>
     </div>
+
+    <div class="overlay"></div>
+    <div class="pixels"></div>
+
+    <div class="text" style="text-align: center; width: 100%;">
+      <h2>404</h2>
+      <h3>Page Not Found</h3>
+      <div style="height: 80px;"></div>
+      <p style="text-align: center; width: 100%; max-width: 100%;">The page you are looking for could not be found.</p>
+      <a href="javascript:history.go(-1)">Go Back</a>
+    </div>
   </div>
 </section>
-</div>
 
-
+<section class="empty-section"></section>
 
 
 	  <!-- Footer -->
@@ -222,13 +219,13 @@
       <div class="col-md-4">
         <ul class="list-inline quicklinks">
           <li class="list-inline-item">
-            <a href="/pages/imprint_en.html"
-              >Imprint</a
+            <a href="/pages/imprint_de.html"
+              >Impressum</a
             >
             |
           <li class="list-inline-item">
-            <a href="/pages/legal_en.html"
-              >Privacy Policy</a
+            <a href="/pages/legal_de.html"
+              >Datenschutz</a
             >
           </li>
         </ul>
@@ -237,19 +234,6 @@
     
   </div>
 </footer>
-
-<script>
-  fixPageShort();
-  function fixPageShort() {
-    if (window.innerHeight > document.body.offsetHeight) {
-      document.getElementById("footer").style.position = "fixed";
-      document.getElementById("footer").style.bottom = 0;
-      document.getElementById("footer").style.right = 0;
-      document.getElementById("footer").style.left = 0;
-      document.getElementById("footer").style.width = "100%";
-    }
-  }
-</script>
 
 <!-- End Footer -->
 
