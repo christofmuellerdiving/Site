@@ -195,6 +195,17 @@ tr:nth-child(even) {
   display: block;
   margin: 0 auto;
   text-align-last: center;
+  font-size: 90%;
+  background-color: transparent;
+  color: white;
+  border: none;
+  outline: none;
+  padding: 0.3em 0.5em;
+  cursor: pointer;
+}
+.nav-select option {
+  background-color: #212529;
+  color: white;
 }
 
 #scrolling-clients {
