@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 
   <head>
   
@@ -16,11 +16,11 @@
   <meta name="author" content="Christof Müller" />
   <link
     rel="canonical"
-    href="/404.html"
+    href="/pages/blog_en.html"
   />
 
   <title>
-    Page Not Found | Christof Müller
+    Blog | Christof Müller
   </title>
 
   <!-- Bootstrap core CSS -->
@@ -56,10 +56,10 @@
   <body id="page-top" >
       
   <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav" data-hidewithscroll="true">
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav" data-hidewithscroll="hideScroll">
     <div class="container">
       <!-- <a class="navbar-brand js-scroll-trigger" href="#page-top"> -->
-        <a class="navbar-brand js-scroll-trigger" href="javascript:goTo('index','page-top','/pages', 'de')"><img height="50" src="/assets/img/logo.png" alt="Christof Müller" /></a>
+        <a class="navbar-brand js-scroll-trigger" href="javascript:goTo('index','page-top','/pages', 'en')"><img height="50" src="/assets/img/logo.png" alt="Christof Müller" /></a>
       <button class="navbar-toggler navbar-toggler-right collapsed" type="button" 
         data-bs-toggle="collapse"
 
@@ -84,12 +84,12 @@
 
                 
                 <option value="en" 
-                >
+                 selected="selected" >
                   EN
                 </option>
                 
                 <option value="de" 
-                 selected="selected" >
+                >
                   DE
                 </option>
                 
@@ -99,27 +99,27 @@
           </li>
           
           
-          <li class="nav-item"><a class="nav-link js-scroll-trigger" href="javascript:goTo('index','about','/pages', 'de')">Über Christof Müller</a></li>
+          <li class="nav-item"><a class="nav-link js-scroll-trigger" href="javascript:goTo('index','about','/pages', 'en')">About</a></li>
           
           
-          <li class="nav-item"><a class="nav-link js-scroll-trigger" href="javascript:goTo('index','courses','/pages', 'de')">Kurse</a></li>
+          <li class="nav-item"><a class="nav-link js-scroll-trigger" href="javascript:goTo('index','courses','/pages', 'en')">Courses</a></li>
           
           
           
           
-          <li class="nav-item"><a class="nav-link js-scroll-trigger" href="javascript:goTo('blog','blog','/pages', 'de')">Blog</a></li>
+          <li class="nav-item"><a class="nav-link js-scroll-trigger" href="javascript:goTo('blog','blog','/pages', 'en')">Blog</a></li>
           
           
-          <li class="nav-item"><a class="nav-link js-scroll-trigger" href="javascript:goTo('index','xdeep','/pages', 'de')">xDeep</a></li>
+          <li class="nav-item"><a class="nav-link js-scroll-trigger" href="javascript:goTo('index','xdeep','/pages', 'en')">xDeep</a></li>
           
           
-          <li class="nav-item"><a class="nav-link js-scroll-trigger" href="javascript:goTo('index','timeline','/pages', 'de')">Referenzen</a></li>
+          <li class="nav-item"><a class="nav-link js-scroll-trigger" href="javascript:goTo('index','timeline','/pages', 'en')">Testimonials</a></li>
           
           
-          <li class="nav-item"><a class="nav-link js-scroll-trigger" href="javascript:goTo('index','moreinfo','/pages', 'de')">Mehr Infos</a></li>
+          <li class="nav-item"><a class="nav-link js-scroll-trigger" href="javascript:goTo('index','moreinfo','/pages', 'en')">MoreInfo</a></li>
           
           
-          <li class="nav-item"><a class="nav-link js-scroll-trigger" href="javascript:goTo('contact','contact','/pages', 'de')">Kontakt</a></li>
+          <li class="nav-item"><a class="nav-link js-scroll-trigger" href="javascript:goTo('contact','contact','/pages', 'en')">Contact</a></li>
           
           
         </ul>
@@ -130,40 +130,42 @@
   <script src="/assets/js/custom.js?v=1779819571"></script>
   <!-- End Navigation -->
 
-<script>
-  // On the 404 page there are no navigable sections, so always redirect to the target page.
-  window.goTo = function(base, section, folder, locale) {
-    window.location.href = folder + '/' + base + '_' + locale + '.html#' + section;
-  };
-</script>
-<section class="showcase page-section" id="blank">
+<div class="container" id="pagecontainer">
+
+    <section class="page-section" id="blog">
   <div class="container">
-    <div class="carouselSlider">
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img
-            src="/assets/img/background/2.jpg"
-            class="d-block mainImage"
-            alt="Page not found"
-          />
-        </div>
-      </div>
+    <div class="text-center">
+      <h2 class="section-heading">Blog</h2>
+      <h3 class="section-subheading">Thoughts on diving, training &amp; underwater exploration</h3>
     </div>
+    <div class="row">
+      
+      
+      <div class="col-lg-8 mx-auto mb-5">
+        <article class="blog-card">
+          
+          <a href="/2025/06/15/buying-gear-instead-of-practicing.html">
+            <img src="/assets/img/blog/blog1.jpeg" alt="Buying gear instead of practicing – why that backfires in sidemount" class="blog-card-img" />
+          </a>
+          
+          <div class="blog-card-body">
+            <p class="blog-card-date">June 15, 2025</p>
+            <h4 class="blog-card-title"><a href="/2025/06/15/buying-gear-instead-of-practicing.html">Buying gear instead of practicing – why that backfires in sidemount</a></h4>
+            <p class="blog-card-excerpt">Buying gear instead of practicing – why that backfires in sidemount
+</p>
+            <a href="/2025/06/15/buying-gear-instead-of-practicing.html" class="btn btn-primary btn-sm">Read more</a>
+          </div>
+        </article>
+      </div>
+      
 
-    <div class="overlay"></div>
-    <div class="pixels"></div>
-
-    <div class="text" style="text-align: center; width: 100%;">
-      <h2>404</h2>
-      <h3>Page Not Found</h3>
-      <div style="height: 80px;"></div>
-      <p style="text-align: center; width: 100%; max-width: 100%;">The page you are looking for could not be found.</p>
-      <a href="javascript:history.go(-1)">Go Back</a>
+      
     </div>
   </div>
 </section>
 
-<section class="empty-section"></section>
+
+</div>
 
 
 	  <!-- Footer -->
@@ -202,13 +204,13 @@
       <div class="col-md-4">
         <ul class="list-inline quicklinks">
           <li class="list-inline-item">
-            <a href="/pages/imprint_de.html"
-              >Impressum</a
+            <a href="/pages/imprint_en.html"
+              >Imprint</a
             >
             |
           <li class="list-inline-item">
-            <a href="/pages/legal_de.html"
-              >Datenschutz</a
+            <a href="/pages/legal_en.html"
+              >Privacy Policy</a
             >
           </li>
         </ul>
