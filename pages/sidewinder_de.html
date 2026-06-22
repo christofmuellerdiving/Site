@@ -152,6 +152,7 @@
     .log-entry-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:9px}
     .log-entry-type{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;padding:3px 8px;border-radius:6px}
     .type-cal{background:rgba(0,180,216,.15);color:var(--cyan)}
+    .type-calo2{background:rgba(180,140,255,.15);color:#c4a8ff}
     .type-pre{background:rgba(6,214,160,.15);color:var(--green)}
     .type-post{background:rgba(255,209,102,.15);color:var(--yellow)}
     .log-entry-date{font-size:.73rem;color:var(--muted)}
@@ -220,7 +221,7 @@
   <div class="card-dark"><h2>PO₂-Wert eintragen</h2><p>Alle drei Sensoren nach Kalibrierung oder Tauchgang erfassen.</p></div>
   <div class="card-dark form-dark">
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px">
-      <div><label>Messtyp</label><select id="log-type"><option value="cal">Kalibrierung</option><option value="pre">Vor-Tauchgang</option><option value="post">Nach-Tauchgang</option></select></div>
+      <div><label>Messtyp</label><select id="log-type" onchange="updateLogPlaceholders()"><option value="cal">Kal. Luft (0.209)</option><option value="calo2">Kal. O₂ (1.000)</option><option value="pre">Vor-Tauchgang</option><option value="post">Nach-Tauchgang</option></select></div>
       <div><label>Tiefe (m)</label><input type="number" id="log-depth" value="0" min="0" max="100" step="0.5"></div>
     </div>
     <label>O₂-Sensoren (bar)</label>
@@ -260,7 +261,7 @@
   </div>
   <div id="health-cards"></div>
   <div class="card-dark">
-    <h2>PO₂-Verlauf (Kalibrierungen)</h2>
+    <h2>Sensor-Abweichung (Kalibrierungen)</h2>
     <div class="chart-wrap"><canvas id="po2-chart"></canvas></div>
     <div id="chart-no-data" class="no-data-msg" style="display:none">Mindestens 2 Kalibrierungen nötig.</div>
   </div>
@@ -888,7 +889,15 @@ function saveLog() {
   renderLogs(); renderAnalysis();
 }
 
-function expPO2(depth){return parseFloat((0.209*(1+depth/10)).toFixed(3));}
+function expPO2(depth, type){
+  const fo2 = type==='calo2' ? 1.00 : 0.209;
+  return parseFloat((fo2*(1+depth/10)).toFixed(3));
+}
+function updateLogPlaceholders(){
+  const isO2 = document.getElementById('log-type').value==='calo2';
+  const ph = isO2 ? '1.000' : '0.209';
+  ['s1','s2','s3'].forEach(id=>{ const el=document.getElementById(id); if(el)el.placeholder=ph; });
+}
 function valCls(v,exp){const d=Math.abs(v-exp);return d<0.02?'value-ok':d<0.04?'value-warn':'value-bad';}
 function spreadCls(s){return s<0.02?'value-ok':s<0.04?'value-warn':'value-bad';}
 
@@ -896,10 +905,10 @@ function renderLogs() {
   const logs=getLogs();
   document.getElementById('log-count').textContent=logs.length+' Einträge';
   if (!logs.length){document.getElementById('log-entries').innerHTML='<div class="no-data-msg">Noch keine Einträge.</div>';return;}
-  const tl={cal:'Kalibrierung',pre:'Vor-TG',post:'Nach-TG'};
-  const tc={cal:'type-cal',pre:'type-pre',post:'type-post'};
+  const tl={cal:'Kal. Luft',calo2:'Kal. O₂',pre:'Vor-TG',post:'Nach-TG'};
+  const tc={cal:'type-cal',calo2:'type-calo2',pre:'type-pre',post:'type-post'};
   document.getElementById('log-entries').innerHTML=logs.slice(0,20).map(log=>{
-    const exp=expPO2(log.depth);
+    const exp=expPO2(log.depth, log.type);
     const spread=Math.max(log.s1,log.s2,log.s3)-Math.min(log.s1,log.s2,log.s3);
     const d=new Date(log.timestamp);
     const ds=d.toLocaleDateString('de-DE',{day:'2-digit',month:'2-digit',year:'2-digit'})+' '+d.toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'});
@@ -936,10 +945,10 @@ function loadChartJs(cb){
 }
 
 function analyzeSensor(logs,key){
-  const cl=logs.filter(l=>l.type==='cal');
+  const cl=logs.filter(l=>l.type==='cal'||l.type==='calo2');
   if(!cl.length)return null;
   const vals=cl.map(l=>l[key]);
-  const devs=vals.map((v,i)=>v-expPO2(cl[i].depth));
+  const devs=vals.map((v,i)=>v-expPO2(cl[i].depth, cl[i].type));
   const avgDev=devs.reduce((a,b)=>a+b,0)/devs.length;
   const maxAbs=Math.max(...devs.map(Math.abs));
   let health='good';
@@ -1005,22 +1014,29 @@ function renderAnalysis(){
 }
 
 function drawChart(logs){
-  const cl=logs.filter(l=>l.type==='cal').slice(0,30).reverse();
+  const cl=logs.filter(l=>l.type==='cal'||l.type==='calo2').slice(0,30).reverse();
   const nd=document.getElementById('chart-no-data');
   const cv=document.getElementById('po2-chart');
   if(cl.length<2){nd.style.display='block';cv.style.display='none';if(po2Chart){po2Chart.destroy();po2Chart=null;}return;}
   nd.style.display='none';cv.style.display='block';
-  const labels=cl.map(l=>new Date(l.timestamp).toLocaleDateString('de-DE',{day:'2-digit',month:'2-digit'}));
+  // Chart shows deviation in mbar — normalises both air and O₂ calibrations
+  const dev=(l,key)=>parseFloat(((l[key]-expPO2(l.depth,l.type))*1000).toFixed(1));
+  const labels=cl.map(l=>{
+    const d=new Date(l.timestamp).toLocaleDateString('de-DE',{day:'2-digit',month:'2-digit'});
+    return l.type==='calo2'?d+' O₂':d;
+  });
   if(po2Chart)po2Chart.destroy();
   po2Chart=new Chart(cv,{type:'line',data:{labels,datasets:[
-    {label:'S1',data:cl.map(l=>l.s1),borderColor:'#00b4d8',backgroundColor:'rgba(0,180,216,.1)',tension:.3,pointRadius:4},
-    {label:'S2',data:cl.map(l=>l.s2),borderColor:'#06d6a0',backgroundColor:'rgba(6,214,160,.1)',tension:.3,pointRadius:4},
-    {label:'S3',data:cl.map(l=>l.s3),borderColor:'#ffd166',backgroundColor:'rgba(255,209,102,.1)',tension:.3,pointRadius:4},
-    {label:'Erwartet',data:cl.map(l=>expPO2(l.depth)),borderColor:'rgba(255,255,255,.2)',borderDash:[5,5],pointRadius:0,tension:0}
+    {label:'S1',data:cl.map(l=>dev(l,'s1')),borderColor:'#00b4d8',backgroundColor:'rgba(0,180,216,.1)',tension:.3,pointRadius:4},
+    {label:'S2',data:cl.map(l=>dev(l,'s2')),borderColor:'#06d6a0',backgroundColor:'rgba(6,214,160,.1)',tension:.3,pointRadius:4},
+    {label:'S3',data:cl.map(l=>dev(l,'s3')),borderColor:'#ffd166',backgroundColor:'rgba(255,209,102,.1)',tension:.3,pointRadius:4},
+    {label:'±20 mbar',data:cl.map(()=>20),borderColor:'rgba(6,214,160,.25)',borderDash:[4,4],pointRadius:0,tension:0},
+    {label:'–20 mbar',data:cl.map(()=>-20),borderColor:'rgba(6,214,160,.25)',borderDash:[4,4],pointRadius:0,tension:0}
   ]},options:{responsive:true,maintainAspectRatio:false,
-    plugins:{legend:{labels:{color:'#8aa8c8',font:{size:11},boxWidth:12}}},
+    plugins:{legend:{labels:{color:'#8aa8c8',font:{size:11},boxWidth:12,filter:i=>i.text!=='–20 mbar'}}},
     scales:{x:{ticks:{color:'#6e98be',font:{size:10}},grid:{color:'rgba(30,58,95,.5)'}},
-            y:{ticks:{color:'#6e98be',font:{size:10}},grid:{color:'rgba(30,58,95,.5)'},title:{display:true,text:'PO₂ (bar)',color:'#6e98be',font:{size:10}}}}}});
+            y:{ticks:{color:'#6e98be',font:{size:10}},grid:{color:'rgba(30,58,95,.5)'},
+               title:{display:true,text:'Abweichung (mbar)',color:'#6e98be',font:{size:10}}}}}});
 }
 
 function renderLinHistory(){
