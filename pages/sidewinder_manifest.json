@@ -1,0 +1,25 @@
+{
+  "name": "KISS Sidewinder Checkliste",
+  "short_name": "Sidewinder",
+  "description": "Pre-Dive Checkliste für den KISS Sidewinder mCCR",
+  "start_url": "/pages/sidewinder_de.html",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#051c2c",
+  "background_color": "#051c2c",
+  "lang": "de",
+  "icons": [
+    {
+      "src": "/assets/img/sidewinder-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/img/sidewinder-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

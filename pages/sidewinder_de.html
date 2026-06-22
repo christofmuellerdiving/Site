@@ -7,7 +7,11 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Sidewinder">
   <meta name="theme-color" content="#051c2c">
+  <meta name="description" content="Pre-Dive Checkliste für den KISS Sidewinder mCCR von Christof Müller — thinking-diver.com">
   <title>KISS Sidewinder — Checkliste</title>
+  <link rel="manifest" href="/pages/sidewinder_manifest.json">
+  <link rel="apple-touch-icon" href="/assets/img/sidewinder-icon-180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/img/sidewinder-icon-192.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
@@ -24,9 +28,11 @@
     body{background:var(--bg);color:var(--text);font-family:"Source Serif 4",Georgia,serif;min-height:100%;padding-bottom:calc(130px + env(safe-area-inset-bottom));-webkit-font-smoothing:antialiased}
 
     /* Header */
-    .app-header{background:linear-gradient(135deg,#051c2c,#0a2a3e);border-bottom:1px solid var(--border);padding:16px 20px 12px;position:sticky;top:0;z-index:100}
-    .app-header h1{font-family:"Playfair Display",Georgia,serif;font-size:1.25rem;font-weight:900;margin:0;letter-spacing:.01em;color:var(--cyan)}
-    .app-header span{font-family:"IBM Plex Mono",monospace;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+    .app-header{background:linear-gradient(135deg,#051c2c,#0a2a3e);border-bottom:1px solid var(--border);padding:14px 18px 12px;position:sticky;top:0;z-index:100}
+    .app-header-inner{display:flex;align-items:center;gap:12px}
+    .app-logo{height:32px;width:auto;opacity:.85;filter:brightness(0) invert(1);flex-shrink:0}
+    .app-header h1{font-family:"Playfair Display",Georgia,serif;font-size:1.15rem;font-weight:900;margin:0;letter-spacing:.01em;color:var(--cyan)}
+    .app-header span{font-family:"IBM Plex Mono",monospace;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 
     /* Bottom nav */
     .bottom-nav{position:fixed;bottom:0;left:0;right:0;z-index:200;background:#051c2c;border-top:1px solid var(--border);display:flex;padding-bottom:env(safe-area-inset-bottom)}
@@ -196,8 +202,13 @@
 <body>
 
 <div class="app-header">
-  <h1>KISS Sidewinder</h1>
-  <span id="header-sub">Pre-Dive Checkliste</span>
+  <div class="app-header-inner">
+    <img src="/assets/img/logo.png" alt="thinking-diver.com" class="app-logo">
+    <div>
+      <h1>KISS Sidewinder</h1>
+      <span id="header-sub">Pre-Dive Checkliste</span>
+    </div>
+  </div>
 </div>
 
 <!-- ══ CHECKLIST ══ -->
@@ -1108,6 +1119,13 @@ window.jumpStep = function(i){
     if(hasData)saveLinearitySnapshot();
   }
 };
+</script>
+<script>
+if('serviceWorker' in navigator){
+  window.addEventListener('load',function(){
+    navigator.serviceWorker.register('/pages/sw.js').catch(function(){});
+  });
+}
 </script>
 </body>
 </html>
