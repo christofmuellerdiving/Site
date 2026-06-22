@@ -20,7 +20,7 @@
     }
     *,*::before,*::after{box-sizing:border-box}
     html{height:100%}
-    body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;min-height:100%;padding-bottom:80px;-webkit-font-smoothing:antialiased}
+    body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;min-height:100%;padding-bottom:calc(90px + env(safe-area-inset-bottom));-webkit-font-smoothing:antialiased}
 
     /* Header */
     .app-header{background:linear-gradient(135deg,#0a1e3d,#0d2a52);border-bottom:1px solid var(--border);padding:16px 20px 12px;position:sticky;top:0;z-index:100}
@@ -696,7 +696,7 @@ function renderSummary() {
     const arr = checkedItems[s.id] || [];
     const missing = arr.filter(v=>!v).length;
     if (missing > 0) {
-      html += `<div class="summary-row missing" onclick="jumpStep(idx)">
+      html += `<div class="summary-row missing" onclick="jumpStep(${idx})">
         <div class="summary-row-name">${s.label}</div>
         <div class="summary-row-badge">${missing} fehlen →</div>
       </div>`;
