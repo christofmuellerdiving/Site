@@ -177,6 +177,15 @@
     .chart-wrap{position:relative;height:200px;margin:14px 0 4px}
     .no-data-msg{text-align:center;color:var(--muted);font-size:.85rem;padding:36px 0}
     .btn-danger-sm{background:rgba(239,71,111,.1);border:1px solid rgba(239,71,111,.3);color:var(--red);border-radius:8px;padding:8px 14px;font-size:.8rem;cursor:pointer;width:100%;margin-top:10px}
+
+    /* Sensor age */
+    .age-section{background:var(--card2);border-radius:10px;padding:11px 13px;margin-bottom:12px}
+    .age-row{display:flex;justify-content:space-between;align-items:center;gap:10px}
+    .age-input{background:var(--bg);border:1px solid var(--cyan);color:var(--text);border-radius:8px;padding:6px 9px;font-size:.8rem;outline:none;-webkit-appearance:none;color-scheme:dark;flex-shrink:0;cursor:pointer}
+    .age-bar-wrap{background:var(--border);border-radius:99px;height:5px;overflow:hidden;margin:7px 0 4px}
+    .age-bar{height:100%;border-radius:99px}
+    .threshold-legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:.75rem;margin-top:6px}
+    .threshold-legend span{white-space:nowrap}
   </style>
 </head>
 <body>
@@ -234,7 +243,21 @@
 
 <!-- ══ ANALYSE ══ -->
 <div id="tab-analyse" class="tab-panel">
-  <div class="card-dark"><h2>Sensor-Gesundheit</h2><p>Basierend auf PO₂-Kalibrierungseinträgen. Erwartungswert bei 0 m: 0.209 bar. Spread max. 0.02 bar.</p></div>
+  <div class="card-dark">
+    <h2>Sensor-Gesundheit</h2>
+    <div class="threshold-legend">
+      <span>PO₂-Abweichung:</span>
+      <span class="value-ok">✓ OK &lt;20 mbar</span>
+      <span class="value-warn">⚠ Prüfen 20–40 mbar</span>
+      <span class="value-bad">✗ Ersetzen &gt;40 mbar</span>
+    </div>
+    <div class="threshold-legend" style="margin-top:5px">
+      <span>Sensor-Alter:</span>
+      <span class="value-ok">✓ OK &lt;10 Monate</span>
+      <span class="value-warn">⚠ Prüfen 10–12 Monate</span>
+      <span class="value-bad">✗ Ersetzen &gt;12 Monate</span>
+    </div>
+  </div>
   <div id="health-cards"></div>
   <div class="card-dark">
     <h2>PO₂-Verlauf (Kalibrierungen)</h2>
@@ -482,6 +505,9 @@ let linearityData = {
   s1:{air:null,o2:null}, s2:{air:null,o2:null}, s3:{air:null,o2:null}
 };
 
+// Sensor installation dates  { s1:'2024-01-15', s2:null, s3:null }
+let sensorAges = { s1:null, s2:null, s3:null };
+
 function initCheckedItems() {
   STEPS.forEach(s => {
     if (!checkedItems[s.id]) checkedItems[s.id] = new Array(s.items.length).fill(false);
@@ -496,6 +522,8 @@ function loadState() {
     if (d.mvRefs) mvRefs = d.mvRefs;
     const ld = JSON.parse(localStorage.getItem('sw_linearity') || '{}');
     if (ld.s1) linearityData = ld;
+    const sa = JSON.parse(localStorage.getItem('sw_sensor_ages') || '{}');
+    if (sa.s1 !== undefined) sensorAges = Object.assign({s1:null,s2:null,s3:null}, sa);
   } catch(e) {}
   initCheckedItems();
 }
@@ -505,6 +533,32 @@ function saveState() {
     localStorage.setItem('sw_state2', JSON.stringify({ currentStep, checkedItems, mvRefs }));
     localStorage.setItem('sw_linearity', JSON.stringify(linearityData));
   } catch(e) {}
+}
+
+// ═══════════════════════════════════════════
+// SENSOR AGE
+// ═══════════════════════════════════════════
+function saveSensorAges() {
+  try { localStorage.setItem('sw_sensor_ages', JSON.stringify(sensorAges)); } catch(e) {}
+}
+function setSensorAge(key, val) {
+  sensorAges[key] = val || null;
+  saveSensorAges();
+  renderAnalysis();
+}
+function sensorAgeDays(key) {
+  if (!sensorAges[key]) return null;
+  return Math.floor((Date.now() - new Date(sensorAges[key]).getTime()) / 86400000);
+}
+function sensorAgeHealth(days) {
+  if (days === null) return 'nodata';
+  if (days >= 365) return 'bad';
+  if (days >= 300) return 'warn';
+  return 'good';
+}
+function worstHealth(a, b) {
+  const order = {good:0, nodata:1, warn:2, bad:3};
+  return order[a] >= order[b] ? a : b;
 }
 
 // ═══════════════════════════════════════════
@@ -898,17 +952,52 @@ function renderAnalysis(){
   const logs=getLogs();
   const lbls={good:'OK',warn:'Prüfen',bad:'Ersetzen',nodata:'Keine Daten'};
   const bcls={good:'badge-good',warn:'badge-warn',bad:'badge-bad',nodata:'badge-nodata'};
+
   document.getElementById('health-cards').innerHTML=[
     {key:'s1',name:'Sensor 1'},{key:'s2',name:'Sensor 2'},{key:'s3',name:'Sensor 3'}
   ].map(({key,name})=>{
     const a=analyzeSensor(logs,key);
-    if(!a)return`<div class="sensor-health-card"><div class="health-header"><div class="health-title">${name}</div><span class="health-badge badge-nodata">Keine Daten</span></div><div class="no-data-msg" style="padding:10px 0">Noch keine Kalibrierungen.</div></div>`;
-    return`<div class="sensor-health-card"><div class="health-header"><div class="health-title">${name}</div><span class="health-badge ${bcls[a.health]}">${lbls[a.health]}</span></div>
+    const days=sensorAgeDays(key);
+    const ageH=sensorAgeHealth(days);
+    const combined=worstHealth(a?a.health:'nodata', ageH);
+
+    // Age bar + label
+    const agePct=days!==null?Math.min(days/365*100,100).toFixed(0):0;
+    const ageBarCol=days>=365?'var(--red)':days>=300?'var(--yellow)':'var(--green)';
+    const ageMonths=days!==null?Math.floor(days/30):null;
+    const ageDaysRem=days!==null?days%30:null;
+    const ageText=days===null?'Kein Datum erfasst'
+      :days>=365?`${ageMonths} Monate ${ageDaysRem} Tage — ERSETZEN!`
+      :days>=300?`${ageMonths} Monate ${ageDaysRem} Tage — bald ersetzen`
+      :`${ageMonths} Monate ${ageDaysRem} Tage`;
+    const ageValCls=days>=365?'value-bad':days>=300?'value-warn':'value-ok';
+
+    let html=`<div class="sensor-health-card">
+      <div class="health-header">
+        <div class="health-title">${name}</div>
+        <span class="health-badge ${bcls[combined]}">${lbls[combined]}</span>
+      </div>
+      <div class="age-section">
+        <div class="age-row">
+          <span class="stat-label" style="font-size:.8rem">Einbaudatum</span>
+          <input type="date" class="age-input" value="${sensorAges[key]||''}" onchange="setSensorAge('${key}',this.value)">
+        </div>
+        ${days!==null?`<div class="age-bar-wrap"><div class="age-bar" style="width:${agePct}%;background:${ageBarCol}"></div></div>`:''}
+        <div style="font-size:.75rem;margin-top:4px"><span class="${days!==null?ageValCls:''}${days===null?'color:var(--muted)':''}">${ageText}</span></div>
+      </div>`;
+
+    if(!a){
+      html+=`<div class="no-data-msg" style="padding:8px 0">Noch keine Kalibrierungen.</div>`;
+    } else {
+      const devCls=d=>Math.abs(d)<0.02?'value-ok':Math.abs(d)<0.04?'value-warn':'value-bad';
+      html+=`
       <div class="stat-row"><span class="stat-label">Letzter Wert</span><span class="stat-val ${valCls(a.last,0.209)}">${a.last.toFixed(3)} bar</span></div>
-      <div class="stat-row"><span class="stat-label">Abweichung (letzter)</span><span class="stat-val ${Math.abs(a.lastDev)<0.02?'value-ok':Math.abs(a.lastDev)<0.04?'value-warn':'value-bad'}">${a.lastDev>=0?'+':''}${(a.lastDev*1000).toFixed(0)} mbar</span></div>
-      <div class="stat-row"><span class="stat-label">Ø Abweichung (${a.count} Kal.)</span><span class="stat-val ${Math.abs(a.avgDev)<0.02?'value-ok':Math.abs(a.avgDev)<0.04?'value-warn':'value-bad'}">${a.avgDev>=0?'+':''}${(a.avgDev*1000).toFixed(0)} mbar</span></div>
-      <div class="stat-row"><span class="stat-label">Max. Abweichung</span><span class="stat-val ${a.maxAbs<0.03?'value-ok':a.maxAbs<0.05?'value-warn':'value-bad'}">${(a.maxAbs*1000).toFixed(0)} mbar</span></div>
-    </div>`;
+      <div class="stat-row"><span class="stat-label">Abweichung (letzter)</span><span class="stat-val ${devCls(a.lastDev)}">${a.lastDev>=0?'+':''}${(a.lastDev*1000).toFixed(0)} mbar</span></div>
+      <div class="stat-row"><span class="stat-label">Ø Abweichung (${a.count} Kal.)</span><span class="stat-val ${devCls(a.avgDev)}">${a.avgDev>=0?'+':''}${(a.avgDev*1000).toFixed(0)} mbar</span></div>
+      <div class="stat-row"><span class="stat-label">Max. Abweichung</span><span class="stat-val ${a.maxAbs<0.03?'value-ok':a.maxAbs<0.05?'value-warn':'value-bad'}">${(a.maxAbs*1000).toFixed(0)} mbar</span></div>`;
+    }
+    html+=`</div>`;
+    return html;
   }).join('');
 
   loadChartJs(()=>drawChart(logs));
