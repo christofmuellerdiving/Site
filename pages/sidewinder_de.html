@@ -20,7 +20,7 @@
     }
     *,*::before,*::after{box-sizing:border-box}
     html{height:100%}
-    body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;min-height:100%;padding-bottom:calc(90px + env(safe-area-inset-bottom));-webkit-font-smoothing:antialiased}
+    body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;min-height:100%;padding-bottom:calc(130px + env(safe-area-inset-bottom));-webkit-font-smoothing:antialiased}
 
     /* Header */
     .app-header{background:linear-gradient(135deg,#0a1e3d,#0d2a52);border-bottom:1px solid var(--border);padding:16px 20px 12px;position:sticky;top:0;z-index:100}
@@ -120,10 +120,11 @@
     .btn-reset{background:var(--card);border:1px solid var(--border)!important;color:var(--muted)}
     .timer-status{text-align:center;font-size:.8rem;color:var(--muted);margin-top:9px;min-height:18px}
 
-    /* Step nav */
-    .step-nav{display:flex;gap:10px;margin-top:14px;align-items:center}
-    .btn-prev,.btn-next{flex:1;padding:13px;border-radius:14px;font-size:.9rem;font-weight:700;border:none;cursor:pointer;transition:opacity .15s}
-    .btn-prev:active,.btn-next:active{opacity:.8}
+    /* Step nav — fixed above bottom nav */
+    .step-nav-wrap{position:fixed;bottom:calc(58px + env(safe-area-inset-bottom));left:0;right:0;z-index:150;background:var(--bg);border-top:1px solid var(--border);padding:10px 16px 8px;display:block}
+    .step-nav{display:flex;gap:10px;align-items:center}
+    .btn-prev,.btn-next{flex:1;padding:14px;border-radius:14px;font-size:.95rem;font-weight:700;border:none;cursor:pointer;transition:opacity .15s;-webkit-tap-highlight-color:transparent}
+    .btn-prev:active,.btn-next:active{opacity:.75}
     .btn-prev{background:var(--card);border:1px solid var(--border)!important;color:var(--muted)}
     .btn-next{background:var(--cyan);color:#0a1628}
     .btn-next.done{background:var(--green)}
@@ -205,13 +206,6 @@
     </div>
     <div class="step-body" id="step-body"></div>
   </div>
-  <div class="step-nav">
-    <button class="btn-prev" id="btn-prev" onclick="prevStep()">← Zurück</button>
-    <button class="btn-next" id="btn-next" onclick="nextStep()">Weiter →</button>
-  </div>
-  <div style="margin-top:12px;text-align:center">
-    <button onclick="resetChecklist()" style="background:none;border:none;color:var(--muted);font-size:.78rem;cursor:pointer;text-decoration:underline">Checkliste zurücksetzen</button>
-  </div>
 </div>
 
 <!-- ══ PO2 LOG ══ -->
@@ -257,6 +251,17 @@
     <h2 style="color:var(--red)">Daten zurücksetzen</h2>
     <p>Alle PO₂-Logs und Linearitäts-Daten unwiderruflich löschen.</p>
     <button class="btn-danger-sm" onclick="clearAllData()">Alle Daten löschen</button>
+  </div>
+</div>
+
+<!-- ══ STEP NAV (fixed above bottom nav, checklist only) ══ -->
+<div id="step-nav-wrap" class="step-nav-wrap">
+  <div class="step-nav">
+    <button class="btn-prev" id="btn-prev" onclick="prevStep()">← Zurück</button>
+    <button class="btn-next" id="btn-next" onclick="nextStep()">Weiter →</button>
+  </div>
+  <div style="text-align:center;padding-top:5px">
+    <button onclick="resetChecklist()" style="background:none;border:none;color:var(--muted);font-size:.72rem;cursor:pointer;text-decoration:underline">Checkliste zurücksetzen</button>
   </div>
 </div>
 
@@ -498,8 +503,10 @@ function loadState() {
 }
 
 function saveState() {
-  localStorage.setItem('sw_state2', JSON.stringify({ currentStep, checkedItems, mvRefs }));
-  localStorage.setItem('sw_linearity', JSON.stringify(linearityData));
+  try {
+    localStorage.setItem('sw_state2', JSON.stringify({ currentStep, checkedItems, mvRefs }));
+    localStorage.setItem('sw_linearity', JSON.stringify(linearityData));
+  } catch(e) {}
 }
 
 // ═══════════════════════════════════════════
@@ -959,6 +966,7 @@ function switchTab(tab){
     document.getElementById('tab-'+t).classList.toggle('active',t===tab);
     document.getElementById('nav-'+t).classList.toggle('active',t===tab);
   });
+  document.getElementById('step-nav-wrap').style.display = tab==='checklist' ? 'block' : 'none';
   if(tab==='log')renderLogs();
   if(tab==='analyse')renderAnalysis();
   const subs={checklist:'Pre-Dive Checkliste',log:'PO₂-Log',analyse:'Sensor-Analyse'};
