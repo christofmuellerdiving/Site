@@ -221,14 +221,14 @@
   <div class="card-dark"><h2>PO₂-Wert eintragen</h2><p>Alle drei Sensoren nach Kalibrierung oder Tauchgang erfassen.</p></div>
   <div class="card-dark form-dark">
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px">
-      <div><label>Messtyp</label><select id="log-type" onchange="updateLogPlaceholders()"><option value="cal">Kal. Luft (0.209)</option><option value="calo2">Kal. O₂ (1.000)</option><option value="pre">Vor-Tauchgang</option><option value="post">Nach-Tauchgang</option></select></div>
+      <div><label>Messtyp</label><select id="log-type"><option value="calo2">Kalibrierung (O₂)</option><option value="pre">Vor-Tauchgang</option><option value="post">Nach-Tauchgang</option></select></div>
       <div><label>Tiefe (m)</label><input type="number" id="log-depth" value="0" min="0" max="100" step="0.5"></div>
     </div>
     <label>O₂-Sensoren (bar)</label>
     <div class="sensor-inputs" style="margin-bottom:14px">
-      <div><label style="text-align:center">Sensor 1</label><input type="number" id="s1" placeholder="0.209" step="0.001" min="0" max="2"></div>
-      <div><label style="text-align:center">Sensor 2</label><input type="number" id="s2" placeholder="0.209" step="0.001" min="0" max="2"></div>
-      <div><label style="text-align:center">Sensor 3</label><input type="number" id="s3" placeholder="0.209" step="0.001" min="0" max="2"></div>
+      <div><label style="text-align:center">Sensor 1</label><input type="number" id="s1" placeholder="1.000" step="0.001" min="0" max="2"></div>
+      <div><label style="text-align:center">Sensor 2</label><input type="number" id="s2" placeholder="1.000" step="0.001" min="0" max="2"></div>
+      <div><label style="text-align:center">Sensor 3</label><input type="number" id="s3" placeholder="1.000" step="0.001" min="0" max="2"></div>
     </div>
     <div style="margin-bottom:14px"><label>Notizen (optional)</label><textarea id="log-notes" rows="2" placeholder="z.B. 1. Tauchgang nach Wartung"></textarea></div>
     <button class="btn-primary-dark" onclick="saveLog()">Eintrag speichern</button>
@@ -247,7 +247,7 @@
   <div class="card-dark">
     <h2>Sensor-Gesundheit</h2>
     <div class="threshold-legend">
-      <span>PO₂-Abweichung:</span>
+      <span>Abweichung von 1.000 bar (O₂):</span>
       <span class="value-ok">✓ OK &lt;20 mbar</span>
       <span class="value-warn">⚠ Prüfen 20–40 mbar</span>
       <span class="value-bad">✗ Ersetzen &gt;40 mbar</span>
@@ -428,13 +428,13 @@ const STEPS = [
   {
     id:'calibrate', label:'CALIBRATE', title:'Kalibrierung',
     items:[
-      'O₂ im Computer kalibrieren falls nötig. Zuerst Umgebungsluftdruck im Loop herstellen. (optional)'
+      'Sensoren mit reinem O₂ kalibrieren (Loop ist mit O₂ geflusht). Erwartungswert: 1.000 bar bei 0 m.'
     ],
     explanation:`
-      <h3>Kalibrierung</h3>
-      <p>Kalibrierung in Umgebungsluft: Erwartungswert <strong>0.209 bar</strong> bei 0 m Tiefe. Loop muss Umgebungsdruck haben (nicht unter- oder überfüllt).</p>
-      <p>Nach der Kalibrierung PO₂-Werte im <strong>Log-Tab</strong> eintragen für die Sensor-Analyse!</p>
-      <div class="tip-box"><span class="tip-label">Tipp</span><p>Kalibrierung ist optional wenn Sensoren bereits kalibriert sind und die Werte stabil bei 0.209 bar liegen.</p></div>
+      <h3>Kalibrierung mit O₂</h3>
+      <p>Nach dem O₂-Flush enthält der Loop reinen Sauerstoff (FO₂ = 1.00). Der Computer kalibriert die Sensoren auf den Erwartungswert <strong>1.000 bar</strong> bei Oberflächendruck.</p>
+      <p>Nach der Kalibrierung PO₂-Werte im <strong>Log-Tab → Kalibrierung (O₂)</strong> eintragen für die Sensor-Analyse!</p>
+      <div class="tip-box"><span class="tip-label">Tipp</span><p>Kalibrierung ist optional wenn alle drei Sensoren bereits stabil auf 1.000 bar liegen — dann nur prüfen und loggen.</p></div>
     `
   },
   {
@@ -893,11 +893,6 @@ function expPO2(depth, type){
   const fo2 = type==='calo2' ? 1.00 : 0.209;
   return parseFloat((fo2*(1+depth/10)).toFixed(3));
 }
-function updateLogPlaceholders(){
-  const isO2 = document.getElementById('log-type').value==='calo2';
-  const ph = isO2 ? '1.000' : '0.209';
-  ['s1','s2','s3'].forEach(id=>{ const el=document.getElementById(id); if(el)el.placeholder=ph; });
-}
 function valCls(v,exp){const d=Math.abs(v-exp);return d<0.02?'value-ok':d<0.04?'value-warn':'value-bad';}
 function spreadCls(s){return s<0.02?'value-ok':s<0.04?'value-warn':'value-bad';}
 
@@ -905,7 +900,7 @@ function renderLogs() {
   const logs=getLogs();
   document.getElementById('log-count').textContent=logs.length+' Einträge';
   if (!logs.length){document.getElementById('log-entries').innerHTML='<div class="no-data-msg">Noch keine Einträge.</div>';return;}
-  const tl={cal:'Kal. Luft',calo2:'Kal. O₂',pre:'Vor-TG',post:'Nach-TG'};
+  const tl={cal:'Kal. Luft',calo2:'Kalibrierung',pre:'Vor-TG',post:'Nach-TG'};
   const tc={cal:'type-cal',calo2:'type-calo2',pre:'type-pre',post:'type-post'};
   document.getElementById('log-entries').innerHTML=logs.slice(0,20).map(log=>{
     const exp=expPO2(log.depth, log.type);
@@ -945,10 +940,10 @@ function loadChartJs(cb){
 }
 
 function analyzeSensor(logs,key){
-  const cl=logs.filter(l=>l.type==='cal'||l.type==='calo2');
+  const cl=logs.filter(l=>l.type==='calo2');
   if(!cl.length)return null;
   const vals=cl.map(l=>l[key]);
-  const devs=vals.map((v,i)=>v-expPO2(cl[i].depth, cl[i].type));
+  const devs=vals.map((v,i)=>v-expPO2(cl[i].depth,'calo2'));
   const avgDev=devs.reduce((a,b)=>a+b,0)/devs.length;
   const maxAbs=Math.max(...devs.map(Math.abs));
   let health='good';
@@ -1014,7 +1009,7 @@ function renderAnalysis(){
 }
 
 function drawChart(logs){
-  const cl=logs.filter(l=>l.type==='cal'||l.type==='calo2').slice(0,30).reverse();
+  const cl=logs.filter(l=>l.type==='calo2').slice(0,30).reverse();
   const nd=document.getElementById('chart-no-data');
   const cv=document.getElementById('po2-chart');
   if(cl.length<2){nd.style.display='block';cv.style.display='none';if(po2Chart){po2Chart.destroy();po2Chart=null;}return;}
