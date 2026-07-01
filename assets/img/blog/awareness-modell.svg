@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 660" font-family="'Source Serif 4', Georgia, serif">
+<defs>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&amp;family=Source+Serif+4:wght@400;600&amp;family=DM+Mono:wght@400&amp;display=swap');
+.ttl{font-family:'Playfair Display',serif;font-weight:700;fill:#1a5276;}
+.sub{font-family:'DM Mono',monospace;fill:#8a8a8a;letter-spacing:.12em;}
+.ring{font-family:'DM Mono',monospace;letter-spacing:.18em;font-weight:400;}
+.lname{font-family:'Playfair Display',serif;font-weight:700;}
+.litem{font-family:'Source Serif 4',serif;fill:#3a3a3a;font-weight:400;}
+.dir{font-family:'DM Mono',monospace;letter-spacing:.08em;}
+.merk{font-family:'Playfair Display',serif;font-style:italic;font-weight:400;fill:#ffffff;}
+</style>
+<marker id="ah-blue" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#1a5276"/></marker>
+<marker id="ah-red" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#c0392b"/></marker>
+</defs>
+
+<rect width="840" height="660" fill="#f7f4ef"/>
+
+<text x="48" y="62" class="ttl" font-size="34">Das Awareness-Modell</text>
+<text x="50" y="88" class="sub" font-size="13">GUE-BASIS · DREI EBENEN</text>
+<line x1="48" y1="104" x2="792" y2="104" stroke="#e0d8cc" stroke-width="1"/>
+
+<!-- Concentric rings -->
+<g>
+<circle cx="250" cy="330" r="190" fill="#eaf3f9" stroke="#1a5276" stroke-width="1.5"/>
+<circle cx="250" cy="330" r="128" fill="#bcdcef" stroke="#1a5276" stroke-width="1.5"/>
+<circle cx="250" cy="330" r="66" fill="#1a5276"/>
+<text x="250" y="335" text-anchor="middle" class="ring" fill="#ffffff" font-size="15">SELBST</text>
+<text x="250" y="232" text-anchor="middle" class="ring" fill="#1a5276" font-size="14">TEAM</text>
+<text x="250" y="166" text-anchor="middle" class="ring" fill="#1a5276" font-size="14">UMGEBUNG</text>
+</g>
+
+<!-- direction arrows -->
+<g>
+<line x1="262" y1="540" x2="300" y2="540" stroke="#1a5276" stroke-width="1.6" marker-end="url(#ah-blue)"/>
+<text x="308" y="544" class="dir" fill="#1a5276" font-size="12">Aufbau: innen → außen</text>
+<line x1="300" y1="566" x2="262" y2="566" stroke="#c0392b" stroke-width="1.6" marker-end="url(#ah-red)"/>
+<text x="308" y="570" class="dir" fill="#c0392b" font-size="12">Verlust: außen → innen</text>
+</g>
+
+<!-- Legend -->
+<g>
+<rect x="500" y="150" width="20" height="20" fill="#1a5276"/>
+<text x="532" y="160" class="lname" fill="#1a5276" font-size="18">Selbst-Awareness</text>
+<text x="532" y="182" class="litem" font-size="14">Gas · Tiefe · Zeit · Deko · Trimm</text>
+<text x="532" y="203" class="litem" font-size="14">Akku &amp; Triggerzeit · CO2</text>
+
+<rect x="500" y="270" width="20" height="20" fill="#bcdcef" stroke="#1a5276" stroke-width="1"/>
+<text x="532" y="280" class="lname" fill="#1a5276" font-size="18">Team-Awareness</text>
+<text x="532" y="302" class="litem" font-size="14">Position · Status · Signale</text>
+<text x="532" y="323" class="litem" font-size="14">Tempo angleichen · Abstand halten</text>
+
+<rect x="500" y="390" width="20" height="20" fill="#eaf3f9" stroke="#1a5276" stroke-width="1"/>
+<text x="532" y="400" class="lname" fill="#1a5276" font-size="18">Umgebungs-Awareness</text>
+<text x="532" y="422" class="litem" font-size="14">Ausstieg · Topografie · Leine</text>
+<text x="532" y="443" class="litem" font-size="14">Strömung · Heimweg ohne Maschine</text>
+</g>
+
+<!-- Merksatz band -->
+<rect x="0" y="596" width="840" height="64" fill="#1a5276"/>
+<text x="420" y="637" text-anchor="middle" class="merk" font-size="24">Von innen aufgebaut – von außen verloren.</text>
+</svg>
