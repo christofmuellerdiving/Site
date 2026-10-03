@@ -5,48 +5,44 @@
   
 
   <meta charset="utf-8" />
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-  <meta http-equiv="Pragma" content="no-cache" />
-  <meta http-equiv="Expires" content="0" />
   <meta
     name="viewport"
     content="width=device-width, initial-scale=1, shrink-to-fit=no"
   />
-  <meta name="description" content="Site description" />
-  <meta name="author" content="Christof Müller" />
-  <link
-    rel="canonical"
-    href="/pages/blog_en.html"
-  />
+  
+  
+  <meta name="author" content="Christof Müller" /><meta name="description" content="Articles on sidemount, GUE and technical diving: equipment, configuration and mindset, from courses and Christof Müller&#39;s own dives." />
+  <link rel="canonical" href="https://www.thinking-diver.com/pages/blog_en.html" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32.png" />
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
+  <link rel="alternate" hreflang="de" href="https://www.thinking-diver.com/pages/blog_de.html" />
+  <link rel="alternate" hreflang="en" href="https://www.thinking-diver.com/pages/blog_en.html" />
 
-  <title>
-    Blog | Christof Müller
-  </title>
+  <!-- Vorschau beim Teilen (Facebook, WhatsApp, LinkedIn) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="thinking-diver.com" />
+  <meta property="og:title" content="Blog: sidemount, GUE and technical diving | Christof Müller" />
+  <meta property="og:description" content="Articles on sidemount, GUE and technical diving: equipment, configuration and mindset, from courses and Christof Müller&#39;s own dives." />
+  <meta property="og:url" content="https://www.thinking-diver.com/pages/blog_en.html" />
+  <meta property="og:image" content="https://www.thinking-diver.com/assets/img/og-default.jpg" />
+  <meta property="og:locale" content="en_US" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <title>Blog: sidemount, GUE and technical diving | Christof Müller</title>
 
   <!-- Bootstrap core CSS -->
-  <!-- Option 1: Bootstrap Bundle with Popper -->
-  <script
-    src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-    crossorigin="anonymous"
-  ></script>
+  <!-- Option 1: Bootstrap Bundle with Popper --><script defer src="/assets/vendor/bootstrap/bootstrap.bundle.min.js"></script>
+  <link href="/assets/vendor/bootstrap/bootstrap.min.css" rel="stylesheet" />
 
-  <!-- <link href="/assets/css/bootstrap.min.css" rel="stylesheet" /> -->
-  <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-    rel="stylesheet"
-    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-    crossorigin="anonymous"
-  />
+  <link href="/assets/css/all.min.css?v=1791055731" rel="stylesheet" type="text/css" />
 
-  <link href="/assets/css/all.min.css?v=1789477691" rel="stylesheet" type="text/css" />
-
-   
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&display=swap" rel="stylesheet" type="text/css" />
-   
+  <!-- Schriften lokal (keine Verbindung zu Google) -->
+  <link rel="preload" href="/assets/fonts/source-serif-4-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/assets/fonts/playfair-display-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link href="/assets/css/fonts.css?v=1791055731" rel="stylesheet" />
   <!-- Custom styles for this theme -->
   <!--<link href="assets/css/agency.min.css" rel="stylesheet">-->
-  <link href="/assets/css/agency.css?v=1789477691" rel="stylesheet" />
+  <link href="/assets/css/agency.css?v=1791055731" rel="stylesheet" />
 
   <!-- Page container change top padding when nav shrinks -->
   
@@ -59,8 +55,7 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav" data-hidewithscroll="hideScroll">
     <div class="container">
-      <!-- <a class="navbar-brand js-scroll-trigger" href="#page-top"> -->
-        <a class="navbar-brand js-scroll-trigger" href="javascript:goTo('index','page-top','/pages', 'en')"><img height="50" src="/assets/img/logo.png" alt="Christof Müller" /></a>
+        <a class="navbar-brand" href="/pages/index_en.html" aria-label="Christof Müller"><img height="50" src="/assets/img/logo.png" alt="Christof Müller" /></a>
       <button class="navbar-toggler navbar-toggler-right collapsed" type="button" 
         data-bs-toggle="collapse"
 
@@ -75,52 +70,30 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-center">
           
-
           <li class="nav-item">
-
-            
-            <label for="languageSelector" hidden>Language</label>
-            <select class="nav-link nav-select " id="languageSelector" name="languageSelector"
-              onchange="location = `/pages/index_${this.options[this.selectedIndex].value}.html`;">
-
-                
-                <option value="en" 
-                 selected="selected" >
-                  EN
-                </option>
-                
-                <option value="de" 
-                >
-                  DE
-                </option>
-                
-
-            </select>
-
+            <a class="nav-link nav-lang" href="/pages/blog_de.html" lang="de" hreflang="de" aria-label="Deutsche Version" data-umami-event="nav-language">DE</a>
           </li>
           
           
-          <li class="nav-item"><a class="nav-link js-scroll-trigger" href="javascript:goTo('index','about','/pages', 'en')">About</a></li>
+          <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/pages/index_en.html#courses">Sidemount</a></li>
           
           
-          <li class="nav-item"><a class="nav-link js-scroll-trigger" href="javascript:goTo('index','courses','/pages', 'en')">Courses</a></li>
+          <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/pages/index_en.html#courses_gue">GUE</a></li>
           
           
+          <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/pages/price_en.html">Prices</a></li>
           
           
-          <li class="nav-item"><a class="nav-link js-scroll-trigger" href="javascript:goTo('blog','blog','/pages', 'en')">Blog</a></li>
+          <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/pages/blog_en.html">Blog</a></li>
           
           
-          <li class="nav-item"><a class="nav-link js-scroll-trigger" href="javascript:goTo('index','xdeep','/pages', 'en')">xDeep</a></li>
+          <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/pages/faq_en.html">FAQ</a></li>
           
           
-          <li class="nav-item"><a class="nav-link js-scroll-trigger" href="javascript:goTo('index','timeline','/pages', 'en')">Testimonials</a></li>
+          <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/pages/about_en.html">About</a></li>
           
           
-          <li class="nav-item"><a class="nav-link js-scroll-trigger" href="javascript:goTo('index','moreinfo','/pages', 'en')">MoreInfo</a></li>
-          
-          
-          <li class="nav-item"><a class="nav-link js-scroll-trigger" href="javascript:goTo('contact','contact','/pages', 'en')">Contact</a></li>
+          <li class="nav-item"><a class="nav-link js-scroll-trigger nav-cta" href="/pages/contact_en.html" data-umami-event="nav-contact">Contact</a></li>
           
           
         </ul>
@@ -128,16 +101,16 @@
     </div>
   </nav>
 
-  <script src="/assets/js/custom.js?v=1789477691"></script>
+  <script src="/assets/js/custom.js?v=1791055731"></script>
   <!-- End Navigation -->
 
-<div class="container" id="pagecontainer">
+<div class="container" id="pagecontainer" style="padding-top: 100px;">
 
     <section class="page-section" id="blog">
   <div class="container">
     <div class="text-center">
-      <h2 class="section-heading">Blog</h2>
-      <h3 class="section-subheading">Thoughts on diving, training &amp; underwater exploration</h3>
+      <h1 class="section-heading">Blog</h1>
+      <p class="section-subheading">Equipment, configuration and mindset. From courses and my own dives.</p>
     </div>
     <div class="row">
       
@@ -146,7 +119,7 @@
         <article class="blog-card">
           
           <a href="/2026/08/18/08-26-The-Art-of-Slowing-Down.html">
-            <img src="/assets/img/blog/slowissmooth.jpg" alt="The Art of Slowing Down" class="blog-card-img" />
+            <img src="/assets/img/blog/thumb/slowissmooth.jpg" alt="The Art of Slowing Down" class="blog-card-img" loading="lazy" decoding="async" />
           </a>
           
           <div class="blog-card-body">
@@ -163,7 +136,7 @@
         <article class="blog-card">
           
           <a href="/2026/07/27/silent-rituals-of-divers-en.html">
-            <img src="/assets/img/blog/silent-rituals-of-divers.jpg" alt="Silent Rituals of Divers" class="blog-card-img" />
+            <img src="/assets/img/blog/thumb/silent-rituals-of-divers.jpg" alt="Silent Rituals of Divers" class="blog-card-img is-contain" loading="lazy" decoding="async" />
           </a>
           
           <div class="blog-card-body">
@@ -179,7 +152,7 @@
         <article class="blog-card">
           
           <a href="/2026/07/14/Finding-Your-Way-Back-Is-Not-a-Matter-of-Luck.html">
-            <img src="/assets/img/blog/Navigation.jpeg" alt="Navigation: Finding Your Way Back Is Not a Matter of Luck" class="blog-card-img" />
+            <img src="/assets/img/blog/thumb/Navigation.jpg" alt="Navigation: Finding Your Way Back Is Not a Matter of Luck" class="blog-card-img" loading="lazy" decoding="async" />
           </a>
           
           <div class="blog-card-body">
@@ -196,7 +169,7 @@
         <article class="blog-card">
           
           <a href="/2026/06/23/DPV-The-trigger-is-the-easy-part.html">
-            <img src="/assets/img/blog/dpv-trigger-og.jpeg" alt="The Trigger Is the Easy Part" class="blog-card-img" />
+            <img src="/assets/img/blog/thumb/dpv-trigger-og.jpg" alt="The Trigger Is the Easy Part" class="blog-card-img" loading="lazy" decoding="async" />
           </a>
           
           <div class="blog-card-body">
@@ -212,7 +185,7 @@
         <article class="blog-card">
           
           <a href="/2026/06/09/GUE-Fundamentals-or-TDI-Intro-to-Tech-That's-the-Wrong-Question-Too.html">
-            <img src="/assets/img/blog/fundointro.jpg" alt="GUE Fundamentals or TDI Intro to Tech? That's the Wrong Question Too" class="blog-card-img" />
+            <img src="/assets/img/blog/thumb/fundointro.jpg" alt="GUE Fundamentals or TDI Intro to Tech? That's the Wrong Question Too" class="blog-card-img" loading="lazy" decoding="async" />
           </a>
           
           <div class="blog-card-body">
@@ -228,7 +201,7 @@
         <article class="blog-card">
           
           <a href="/2026/06/08/Something-Was-Missing-From-Open-Water-to-a-Sidewinder.html">
-            <img src="/assets/img/blog/owd-zum-sidewinder.jpg" alt="Something Was Missing: From Open Water to a Sidewinder" class="blog-card-img" />
+            <img src="/assets/img/blog/thumb/owd-zum-sidewinder.jpg" alt="Something Was Missing: From Open Water to a Sidewinder" class="blog-card-img" style="object-position: 50% 20%" loading="lazy" decoding="async" />
           </a>
           
           <div class="blog-card-body">
@@ -244,12 +217,12 @@
         <article class="blog-card">
           
           <a href="/2026/06/03/Backmount-or-Sidemount-The-Wrong-Question.html">
-            <img src="/assets/img/blog/f8509596-1425-4609-a389-666790551c6d.jpeg" alt="“Backmount or Sidemount – The wrong question”" class="blog-card-img" />
+            <img src="/assets/img/blog/thumb/f8509596-1425-4609-a389-666790551c6d.jpg" alt="Backmount or Sidemount: The wrong question" class="blog-card-img" loading="lazy" decoding="async" />
           </a>
           
           <div class="blog-card-body">
             <p class="blog-card-date">June 3, 2026</p>
-            <h4 class="blog-card-title"><a href="/2026/06/03/Backmount-or-Sidemount-The-Wrong-Question.html">“Backmount or Sidemount – The wrong question”</a></h4>
+            <h4 class="blog-card-title"><a href="/2026/06/03/Backmount-or-Sidemount-The-Wrong-Question.html">Backmount or Sidemount: The wrong question</a></h4>
             <p class="blog-card-excerpt">There’s a debate that repeats endlessly in forums, on boats, and after dives: “Which is better – backmount or sidemount?”
 </p>
             <a href="/2026/06/03/Backmount-or-Sidemount-The-Wrong-Question.html" class="btn btn-primary btn-sm">Read more</a>
@@ -261,12 +234,12 @@
         <article class="blog-card">
           
           <a href="/2025/06/15/buying-gear-instead-of-practicing.html">
-            <img src="/assets/img/blog/blog1.jpeg" alt="Buying gear instead of practicing – why that backfires in sidemount" class="blog-card-img" />
+            <img src="/assets/img/blog/thumb/blog1.jpg" alt="Buying gear instead of practicing: why that backfires in sidemount" class="blog-card-img" loading="lazy" decoding="async" />
           </a>
           
           <div class="blog-card-body">
             <p class="blog-card-date">June 15, 2025</p>
-            <h4 class="blog-card-title"><a href="/2025/06/15/buying-gear-instead-of-practicing.html">Buying gear instead of practicing – why that backfires in sidemount</a></h4>
+            <h4 class="blog-card-title"><a href="/2025/06/15/buying-gear-instead-of-practicing.html">Buying gear instead of practicing: why that backfires in sidemount</a></h4>
             <p class="blog-card-excerpt">Buying gear instead of practicing – why that backfires in sidemount
 </p>
             <a href="/2025/06/15/buying-gear-instead-of-practicing.html" class="btn btn-primary btn-sm">Read more</a>
@@ -285,7 +258,7 @@
 
 
 	  <!-- Footer -->
-<footer class="footer" id="footer" style="background-color: white">
+<footer class="footer" id="footer">
   <div class="container">
     
     <div class="row align-items-center">

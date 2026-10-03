@@ -70,3 +70,27 @@ var videos = document.getElementsByTagName("video");
 //         video.pause();
 //     }
 // });
+// Dezente Einblendung beim Scrollen (abgeschaltet bei "Bewegung reduzieren")
+document.addEventListener("DOMContentLoaded", function () {
+  if (!("IntersectionObserver" in window)) return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  var targets = document.querySelectorAll(
+    ".page-section .section-heading, .section-intro, .path-step, .portfolio-item, .post-card, .quote-card, .fact-row, .team-member, #xdeep .row > div"
+  );
+  var io = new IntersectionObserver(
+    function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          e.target.classList.add("is-visible");
+          io.unobserve(e.target);
+        }
+      });
+    },
+    { rootMargin: "0px 0px -8% 0px" }
+  );
+  targets.forEach(function (el, i) {
+    el.classList.add("reveal");
+    el.style.transitionDelay = (i % 4) * 70 + "ms";
+    io.observe(el);
+  });
+});

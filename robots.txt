@@ -17,3 +17,4 @@ Disallow: /pages/imprint_en.html
 # Allow other content
 Allow: /pages/
 Allow: /assets/
+Sitemap: https://www.thinking-diver.com/sitemap.xml

@@ -5,48 +5,43 @@
   
 
   <meta charset="utf-8" />
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-  <meta http-equiv="Pragma" content="no-cache" />
-  <meta http-equiv="Expires" content="0" />
   <meta
     name="viewport"
     content="width=device-width, initial-scale=1, shrink-to-fit=no"
   />
-  <meta name="description" content="Site description" />
-  <meta name="author" content="Christof Müller" />
-  <link
-    rel="canonical"
-    href="/404.html"
-  />
+  
+  
+  <meta name="author" content="Christof Müller" /><meta name="description" content="Diese Seite gibt es nicht oder nicht mehr. Von hier geht es zu den Kursen, Terminen und zum Kontakt." />
+  <link rel="canonical" href="https://www.thinking-diver.com/404.html" />
+  <meta name="robots" content="noindex" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32.png" />
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
 
-  <title>
-    Page Not Found | Christof Müller
-  </title>
+  <!-- Vorschau beim Teilen (Facebook, WhatsApp, LinkedIn) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="thinking-diver.com" />
+  <meta property="og:title" content="Seite nicht gefunden | Christof Müller" />
+  <meta property="og:description" content="Diese Seite gibt es nicht oder nicht mehr. Von hier geht es zu den Kursen, Terminen und zum Kontakt." />
+  <meta property="og:url" content="https://www.thinking-diver.com/404.html" />
+  <meta property="og:image" content="https://www.thinking-diver.com/assets/img/og-default.jpg" />
+  <meta property="og:locale" content="de_DE" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <title>Seite nicht gefunden | Christof Müller</title>
 
   <!-- Bootstrap core CSS -->
-  <!-- Option 1: Bootstrap Bundle with Popper -->
-  <script
-    src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-    crossorigin="anonymous"
-  ></script>
+  <!-- Option 1: Bootstrap Bundle with Popper --><script defer src="/assets/vendor/bootstrap/bootstrap.bundle.min.js"></script>
+  <link href="/assets/vendor/bootstrap/bootstrap.min.css" rel="stylesheet" />
 
-  <!-- <link href="/assets/css/bootstrap.min.css" rel="stylesheet" /> -->
-  <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-    rel="stylesheet"
-    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-    crossorigin="anonymous"
-  />
+  <link href="/assets/css/all.min.css?v=1791055731" rel="stylesheet" type="text/css" />
 
-  <link href="/assets/css/all.min.css?v=1789477691" rel="stylesheet" type="text/css" />
-
-   
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&display=swap" rel="stylesheet" type="text/css" />
-   
+  <!-- Schriften lokal (keine Verbindung zu Google) -->
+  <link rel="preload" href="/assets/fonts/source-serif-4-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/assets/fonts/playfair-display-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link href="/assets/css/fonts.css?v=1791055731" rel="stylesheet" />
   <!-- Custom styles for this theme -->
   <!--<link href="assets/css/agency.min.css" rel="stylesheet">-->
-  <link href="/assets/css/agency.css?v=1789477691" rel="stylesheet" />
+  <link href="/assets/css/agency.css?v=1791055731" rel="stylesheet" />
 
   <!-- Page container change top padding when nav shrinks -->
   
@@ -57,10 +52,9 @@
   <body id="page-top" >
       
   <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav" data-hidewithscroll="true">
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav" data-hidewithscroll="hideScroll">
     <div class="container">
-      <!-- <a class="navbar-brand js-scroll-trigger" href="#page-top"> -->
-        <a class="navbar-brand js-scroll-trigger" href="javascript:goTo('index','page-top','/pages', 'de')"><img height="50" src="/assets/img/logo.png" alt="Christof Müller" /></a>
+        <a class="navbar-brand" href="/pages/index_de.html" aria-label="Christof Müller"><img height="50" src="/assets/img/logo.png" alt="Christof Müller" /></a>
       <button class="navbar-toggler navbar-toggler-right collapsed" type="button" 
         data-bs-toggle="collapse"
 
@@ -75,52 +69,30 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-center">
           
-
           <li class="nav-item">
-
-            
-            <label for="languageSelector" hidden>Language</label>
-            <select class="nav-link nav-select " id="languageSelector" name="languageSelector"
-              onchange="location = `/pages/index_${this.options[this.selectedIndex].value}.html`;">
-
-                
-                <option value="en" 
-                >
-                  EN
-                </option>
-                
-                <option value="de" 
-                 selected="selected" >
-                  DE
-                </option>
-                
-
-            </select>
-
+            <a class="nav-link nav-lang" href="/pages/blog_en.html" lang="en" hreflang="en" aria-label="English version" data-umami-event="nav-language">EN</a>
           </li>
           
           
-          <li class="nav-item"><a class="nav-link js-scroll-trigger" href="javascript:goTo('index','about','/pages', 'de')">Über Christof Müller</a></li>
+          <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/pages/index_de.html#courses">Sidemount</a></li>
           
           
-          <li class="nav-item"><a class="nav-link js-scroll-trigger" href="javascript:goTo('index','courses','/pages', 'de')">Kurse</a></li>
+          <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/pages/index_de.html#courses_gue">GUE</a></li>
           
           
+          <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/pages/price_de.html">Preise</a></li>
           
           
-          <li class="nav-item"><a class="nav-link js-scroll-trigger" href="javascript:goTo('blog','blog','/pages', 'de')">Blog</a></li>
+          <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/pages/blog_de.html">Blog</a></li>
           
           
-          <li class="nav-item"><a class="nav-link js-scroll-trigger" href="javascript:goTo('index','xdeep','/pages', 'de')">xDeep</a></li>
+          <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/pages/faq_de.html">FAQ</a></li>
           
           
-          <li class="nav-item"><a class="nav-link js-scroll-trigger" href="javascript:goTo('index','timeline','/pages', 'de')">Referenzen</a></li>
+          <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/pages/about_de.html">Über mich</a></li>
           
           
-          <li class="nav-item"><a class="nav-link js-scroll-trigger" href="javascript:goTo('index','moreinfo','/pages', 'de')">Mehr Infos</a></li>
-          
-          
-          <li class="nav-item"><a class="nav-link js-scroll-trigger" href="javascript:goTo('contact','contact','/pages', 'de')">Kontakt</a></li>
+          <li class="nav-item"><a class="nav-link js-scroll-trigger nav-cta" href="/pages/contact_de.html" data-umami-event="nav-contact">Kontakt</a></li>
           
           
         </ul>
@@ -128,47 +100,43 @@
     </div>
   </nav>
 
-  <script src="/assets/js/custom.js?v=1789477691"></script>
+  <script src="/assets/js/custom.js?v=1791055731"></script>
   <!-- End Navigation -->
 
-<script>
-  // On the 404 page there are no navigable sections, so always redirect to the target page.
-  window.goTo = function(base, section, folder, locale) {
-    window.location.href = folder + '/' + base + '_' + locale + '.html#' + section;
-  };
-</script>
-<section class="showcase page-section" id="blank">
+<section class="course-hero notfound-hero">
   <div class="container">
-    <div class="carouselSlider">
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img
-            src="/assets/img/background/2.jpg"
-            class="d-block mainImage"
-            alt="Page not found"
-          />
-        </div>
+    <div class="course-hero-text">
+      <p class="kicker">Fehler 404</p>
+      <h1>Diese Seite gibt es nicht.</h1>
+      <p class="course-lead">Die Adresse ist falsch oder die Seite wurde verschoben. Von hier aus findest du Kurse, Termine und den Weg zu mir.</p>
+      <div class="course-hero-actions">
+        <a class="btn btn-primary btn-xl" href="/pages/index_de.html">Zur Startseite</a>
+        <a class="btn btn-ghost-light btn-xl" href="/pages/termine_de.html">Kurstermine</a>
       </div>
-    </div>
-
-    <div class="overlay"></div>
-    <div class="pixels"></div>
-
-    <div class="text" style="text-align: center; width: 100%;">
-      <h2>404</h2>
-      <h3>Page Not Found</h3>
-      <div style="height: 80px;"></div>
-      <p style="text-align: center; width: 100%; max-width: 100%;">The page you are looking for could not be found.</p>
-      <a href="javascript:history.go(-1)">Go Back</a>
+      <p class="notfound-en" lang="en">Page not found. <a href="/pages/index_en.html">Go to the English home page</a>.</p>
     </div>
   </div>
 </section>
 
-<section class="empty-section"></section>
+<section class="notfound-links">
+  <div class="container">
+    <p class="kicker">Häufig gesucht</p>
+    <ul class="notfound-list">
+      <li><a class="link-arrow" href="/pages/index_de.html#courses">Sidemount-Kurse</a></li>
+      <li><a class="link-arrow" href="/pages/index_de.html#courses_gue">GUE-Kurse</a></li>
+      <li><a class="link-arrow" href="/pages/index_de.html#einstieg">Wo du einsteigst</a></li>
+      <li><a class="link-arrow" href="/pages/price_de.html">Preise</a></li>
+      <li><a class="link-arrow" href="/pages/faq_de.html">Häufige Fragen</a></li>
+      <li><a class="link-arrow" href="/pages/blog_de.html">Blog</a></li>
+      <li><a class="link-arrow" href="/pages/about_de.html">Über mich</a></li>
+      <li><a class="link-arrow" href="/pages/contact_de.html">Kontakt</a></li>
+    </ul>
+  </div>
+</section>
 
 
 	  <!-- Footer -->
-<footer class="footer" id="footer" style="background-color: white">
+<footer class="footer" id="footer">
   <div class="container">
     
     <div class="row align-items-center">
