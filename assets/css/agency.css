@@ -2494,6 +2494,23 @@ section[id], .page-section {
     background: linear-gradient(90deg, rgba(5, 28, 44, 0.82) 0%, rgba(5, 28, 44, 0.5) 28%, rgba(5, 28, 44, 0) 52%), linear-gradient(0deg, rgba(5, 28, 44, 0.6) 0%, rgba(5, 28, 44, 0) 40%), linear-gradient(180deg, rgba(5, 28, 44, 0.45) 0%, rgba(5, 28, 44, 0) 18%);
   }
 }
+@media (min-width: 992px) {
+  .hero {
+    min-height: clamp(620px, 78svh, 820px);
+  }
+}
+@media (min-width: 1400px) {
+  .hero-copy {
+    max-width: 660px;
+  }
+  .hero-content h1 {
+    font-size: clamp(3.9rem, 3.4vw, 4.8rem);
+  }
+  .hero-lead {
+    font-size: 1.25rem;
+    max-width: 600px;
+  }
+}
 .trust-strip {
   background: #051c2c;
   border-top: 1px solid rgba(244, 241, 235, 0.08);
