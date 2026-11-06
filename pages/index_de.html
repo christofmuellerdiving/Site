@@ -36,17 +36,15 @@
   <!-- Bootstrap core CSS -->
   <!-- Option 1: Bootstrap Bundle with Popper --><script defer src="/assets/vendor/bootstrap/bootstrap.bundle.min.js"></script>
   <link href="/assets/vendor/bootstrap/bootstrap.min.css" rel="stylesheet" />
-
-  <link href="/assets/css/all.min.css?v=1793957114" rel="stylesheet" type="text/css" />
-  <link rel="preload" as="image" href="/assets/img/background/1.webp" fetchpriority="high" />
+  <link rel="preload" as="image" href="/assets/img/background/1-m.webp" media="(max-width: 767px) and (orientation: portrait)" fetchpriority="high" />
+  <link rel="preload" as="image" href="/assets/img/background/1.webp" media="(min-width: 768px), (orientation: landscape)" fetchpriority="high" />
 
   <!-- Schriften lokal (keine Verbindung zu Google) -->
   <link rel="preload" href="/assets/fonts/source-serif-4-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="/assets/fonts/playfair-display-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin />
-  <link href="/assets/css/fonts.css?v=1793957114" rel="stylesheet" />
+  <link href="/assets/css/fonts.css?v=1793997261" rel="stylesheet" />
   <!-- Custom styles for this theme -->
-  <!--<link href="assets/css/agency.min.css" rel="stylesheet">-->
-  <link href="/assets/css/agency.css?v=1793957114" rel="stylesheet" />
+  <link href="/assets/css/agency.css?v=1793997261" rel="stylesheet" />
 
   <!-- Page container change top padding when nav shrinks -->
   
@@ -69,10 +67,12 @@
 
   <body id="page-top" >
       
+
+
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav" data-hidewithscroll="true">
     <div class="container">
-        <a class="navbar-brand" href="/pages/index_de.html" aria-label="Christof Müller"><img height="50" src="/assets/img/logo.png" alt="Christof Müller" /></a>
+        <a class="navbar-brand" href="/pages/index_de.html" aria-label="Christof Müller"><img height="50" width="105" src="/assets/img/logo-nav.webp" alt="Christof Müller" /></a>
       <button class="navbar-toggler navbar-toggler-right collapsed" type="button" 
         data-bs-toggle="collapse"
 
@@ -80,7 +80,7 @@
         aria-controls="navbarResponsive"
         aria-expanded="false" 
         aria-label="Toggle navigation">
-        <i class="fas fa-bars"></i>
+        <svg class="svg-icon svg-icon-menu-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 6l16 0" /> <path d="M4 12l16 0" /> <path d="M4 18l16 0" /></svg>
       </button>
 
 
@@ -118,14 +118,17 @@
     </div>
   </nav>
 
-  <script src="/assets/js/custom.js?v=1793957114"></script>
+  <script src="/assets/js/custom.js?v=1793997261"></script>
   <!-- End Navigation -->
 
 
 <!-- Hero -->
 <section class="hero" id="blank">
-  <video class="hero-media" id="heroVideo" muted loop playsinline preload="none"
-         poster="/assets/img/background/1.webp"
+  <picture>
+    <source media="(max-width: 767px) and (orientation: portrait)" srcset="/assets/img/background/1-m.webp" />
+    <img class="hero-media" src="/assets/img/background/1.webp" alt="" fetchpriority="high" />
+  </picture>
+  <video class="hero-media hero-video" id="heroVideo" muted loop playsinline preload="none"
          data-src="/assets/videos/christof.mp4" aria-hidden="true"></video>
   <div class="hero-scrim"></div>
   <div class="container hero-content">
@@ -137,7 +140,10 @@
         <a class="btn btn-primary btn-xl" data-umami-event="hero-sidemount" href="#courses">Sidemount-Kurse</a>
         <a class="btn btn-primary btn-xl" data-umami-event="hero-gue" href="#courses_gue">GUE-Kurse</a>
       </div>
-      <a class="link-arrow hero-price-link" data-umami-event="hero-prices" href="/pages/price_de.html">Preise & Voraussetzungen</a>
+      <div class="hero-links">
+        <a class="link-arrow hero-price-link" data-umami-event="hero-prices" href="/pages/price_de.html">Preise & Voraussetzungen</a>
+        <a class="link-arrow hero-price-link" data-umami-event="hero-dates" href="/pages/termine_de.html">Termine</a>
+      </div>
     </div>
   </div>
   <a class="hero-scroll" href="#courses" aria-label="Weiter nach unten"></a>
@@ -146,23 +152,28 @@
 <div class="trust-strip">
   <div class="container">
     <ul class="hero-trust">
-      <li>SDI / TDI Sidemount-Instruktor</li><li>GUE-Instruktor seit 2018</li><li>Über 25 Jahre IT-Trainer</li><li>Maximal 3 Teilnehmer</li><li>Freiwasser statt Pool</li><li>Eigene Ausbildung bis Trimix und Cave CCR</li>
+      <li>SDI / TDI Sidemount-Instruktor</li><li>GUE-Instruktor seit 2018</li><li><a href="/pages/about_de.html#podcasts" data-umami-event="trust-link">Gast bei Speaking Sidemount</a></li><li>Über 25 Jahre IT-Trainer</li><li>Alle Kurse im See</li><li>Eigene Ausbildung bis Trimix und Cave CCR</li>
     </ul>
   </div>
 </div>
 
 <script>
-  // Video nur auf Desktop, ohne "Bewegung reduzieren" und ohne Datensparmodus
+  // Video nur auf Desktop, ohne "Bewegung reduzieren", ohne Datensparmodus und nicht bei langsamer Verbindung.
+  // Es lädt erst nach der Seite, damit das Standbild und der Text zuerst da sind.
   (function () {
     var v = document.getElementById('heroVideo');
     if (!v) return;
     var desktop = window.matchMedia('(min-width: 768px)').matches;
     var calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var save = navigator.connection && navigator.connection.saveData;
-    if (desktop && !calm && !save) {
+    var c = navigator.connection;
+    var slow = c && (c.saveData || /(^|-)2g|3g/.test(c.effectiveType || ''));
+    if (!desktop || calm || slow) return;
+    function start() {
+      v.addEventListener('playing', function () { v.classList.add('is-playing'); }, { once: true });
       v.src = v.dataset.src;
       v.play().catch(function () {});
     }
+    if (document.readyState === 'complete') start(); else window.addEventListener('load', start, { once: true });
   })();
 </script>
 <!-- End Hero -->
@@ -176,7 +187,7 @@
         <a href="/pages/contact_de.html?message=Hallo+Christof%2C+ich+interessiere+mich+f%C3%BCr+den+Termin%3A+SDI+Sidemount++Diver%2C+20.%E2%80%9321.03.2027" data-umami-event="date-ask-band">
           <span class="nd-date">20.–21.03.2027</span>
           <span class="nd-title">SDI Sidemount  Diver</span>
-          <span class="nd-spots">3 Plätze frei</span>
+          <span class="nd-spots">Plätze frei</span>
           <span class="nd-meta">Sa–So · 2 Tage<span class="nd-ask">Anfragen</span></span>
         </a>
       </li>
@@ -184,7 +195,7 @@
         <a href="/pages/contact_de.html?message=Hallo+Christof%2C+ich+interessiere+mich+f%C3%BCr+den+Termin%3A+TDI+Sidemount+Diver%2C+17.%E2%80%9318.04.2027" data-umami-event="date-ask-band">
           <span class="nd-date">17.–18.04.2027</span>
           <span class="nd-title">TDI Sidemount Diver</span>
-          <span class="nd-spots">3 Plätze frei</span>
+          <span class="nd-spots">Plätze frei</span>
           <span class="nd-meta">Sa–So · 2 Tage<span class="nd-ask">Anfragen</span></span>
         </a>
       </li>
@@ -200,7 +211,7 @@
         <a href="/pages/contact_de.html?message=Hallo+Christof%2C+ich+interessiere+mich+f%C3%BCr+den+Termin%3A+GUE+Fundamentals%2C+11.%E2%80%9313.06.2027" data-umami-event="date-ask-band">
           <span class="nd-date">11.–13.06.2027</span>
           <span class="nd-title">GUE Fundamentals</span>
-          <span class="nd-spots">3 Plätze frei</span>
+          <span class="nd-spots">Plätze frei</span>
           <span class="nd-meta">Fr–So · 3 Tage<span class="nd-ask">Anfragen</span></span>
         </a>
       </li>
@@ -208,7 +219,7 @@
         <a href="/pages/contact_de.html?message=Hallo+Christof%2C+ich+interessiere+mich+f%C3%BCr+den+Termin%3A+GUE+DPV+1%2C+16.%E2%80%9318.07.2027" data-umami-event="date-ask-band">
           <span class="nd-date">16.–18.07.2027</span>
           <span class="nd-title">GUE DPV 1</span>
-          <span class="nd-spots">3 Plätze frei</span>
+          <span class="nd-spots">Plätze frei</span>
           <span class="nd-meta">Fr–So · 3 Tage<span class="nd-ask">Anfragen</span></span>
         </a>
       </li>
@@ -256,7 +267,7 @@
       </div>
       <div class="start-item">
         <h3 class="start-title">Interesse an Sidemount</h3>
-        <p>Beim Try Dive testest du Sidemount, bevor du Ausrüstung kaufst. Danach ist der SDI Sidemount Diver der Einstieg im Freizeitbereich.</p>
+        <p>Beim Try Dive testest du Sidemount, bevor du Ausrüstung kaufst. Danach ist der SDI Sidemount Diver der Einstieg für Sporttaucher.</p>
         <div class="start-links">
           <a class="link-arrow" href="/pages/try-dive-sidemount_de.html" data-umami-event="start-tile" data-umami-event-course="try-dive-sidemount">Try Dive Sidemount</a>
           <a class="link-arrow" href="/pages/sdi-sidemount-diver_de.html" data-umami-event="start-tile" data-umami-event-course="sdi-sidemount-diver">SDI Sidemount Diver</a>
@@ -284,6 +295,7 @@
         </div>
       </div>
     </div>
+    <p class="start-help">Wenn du unsicher bist, schreib mir kurz, was und wie viel du bisher tauchst. Ich sage dir, mit welchem Kurs du anfängst. <a class="link-arrow" data-umami-event="start-advice" href="/pages/contact_de.html?kurs=unsure&amp;message=Hallo+Christof%2C+ich+wei%C3%9F+noch+nicht%2C+welcher+Kurs+zu+mir+passt.+Bisher+tauche+ich%3A+">Frag mich, welcher Kurs passt</a></p>
   </div>
 </section>
 
@@ -321,7 +333,7 @@
 
     
     <div class="section-intro">
-      <p>Ich unterrichte die Sidemount-Kurse mit denselben Anforderungen an Trim, Tarierung und Teamablauf wie meine GUE-Kurse. Konkret heißt das: Jede Übung wird an Land erklärt und geübt, im Wasser wiederholt und im Debriefing besprochen. Zertifiziert wird über SDI und TDI. Der Kurspfad zeigt die Reihenfolge vom Ausprobieren bis zur Tech-Konfiguration. DPV, Advanced Nitrox und Decompression Procedures kannst du ergänzend belegen.</p>
+      <p>Ich unterrichte die Sidemount-Kurse mit denselben Anforderungen an Trim, Tarierung und Tauchen im Team wie meine GUE-Kurse. Jede Übung erkläre und übe ich mit dir zuerst an Land, dann wiederholen wir sie im Wasser und besprechen sie im Debriefing. Zertifiziert wird über SDI und TDI. Der Kurspfad zeigt die Reihenfolge vom Ausprobieren bis zur Tech-Konfiguration. DPV, Advanced Nitrox und Decompression Procedures kannst du ergänzend belegen.</p>
 
     </div>
     
@@ -340,12 +352,12 @@
 <a class="path-step" href="/pages/try-dive-sidemount_de.html"
    data-umami-event="course-card" data-umami-event-course="trydive">
   <div class="path-img">
-    <img src="/assets/img/courses/trydive-sidemount.jpg" alt="Try Dive Sidemount" loading="lazy" />
+    <img src="/assets/img/courses/trydive-sidemount-800.webp" srcset="/assets/img/courses/trydive-sidemount-400.webp 400w, /assets/img/courses/trydive-sidemount-800.webp 800w" sizes="(max-width: 575px) 88px, (max-width: 991px) 340px, (min-width: 1400px) 420px, 360px" alt="Try Dive Sidemount" loading="lazy" decoding="async" />
   </div>
   <div class="path-body">
     <div class="path-meta"><span>Ausprobieren</span></div>
     <h4>Try Dive Sidemount</h4>
-    <p>Sidemount testen, bevor du Ausrüstung kaufst. Ich stelle die Konfiguration auf dich ein, wir üben den S-Drill an Land, danach bekommst du eine ehrliche Einschätzung.</p>
+    <p>Sidemount testen, bevor du Ausrüstung kaufst. Ich stelle das System auf dich ein, wir üben an Land und tauchen, danach sage ich dir, was ich gesehen habe.</p>
     
     <div class="path-facts">
       <span>Halber Tag</span>
@@ -370,12 +382,12 @@
 <a class="path-step" href="/pages/sdi-sidemount-diver_de.html"
    data-umami-event="course-card" data-umami-event-course="sidemount1">
   <div class="path-img">
-    <img src="/assets/img/courses/tdi-sidemount.jpg" alt="SDI Sidemount Diver" loading="lazy" />
+    <img src="/assets/img/courses/tdi-sidemount-800.webp" srcset="/assets/img/courses/tdi-sidemount-400.webp 400w, /assets/img/courses/tdi-sidemount-800.webp 800w" sizes="(max-width: 575px) 88px, (max-width: 991px) 340px, (min-width: 1400px) 420px, 360px" alt="SDI Sidemount Diver" loading="lazy" decoding="async" />
   </div>
   <div class="path-body">
     <div class="path-meta"><span>Einstieg</span></div>
     <h4>SDI Sidemount Diver</h4>
-    <p>Für Sidemount im Freizeitbereich: Ausrüstung, Gewichtung, Gasmanagement mit zwei Flaschen und Problemlösung. Ohne Dekompression, bis 40 m.</p>
+    <p>Sidemount für Sporttaucher: Ausrüstung und Blei, Gasmanagement mit zwei Flaschen und Problemlösung. Ohne Dekompression, bis 40 m.</p>
     
     <div class="path-facts">
       <span>2 Tage</span>
@@ -400,7 +412,7 @@
 <a class="path-step" href="/pages/tdi-intro-to-tech_de.html"
    data-umami-event="course-card" data-umami-event-course="sidemount2">
   <div class="path-img">
-    <img src="/assets/img/courses/tdi-intro.jpg" alt="TDI Intro to Tech" loading="lazy" />
+    <img src="/assets/img/courses/tdi-intro-800.webp" srcset="/assets/img/courses/tdi-intro-400.webp 400w, /assets/img/courses/tdi-intro-800.webp 800w" sizes="(max-width: 575px) 88px, (max-width: 991px) 340px, (min-width: 1400px) 420px, 360px" alt="TDI Intro to Tech" loading="lazy" decoding="async" />
   </div>
   <div class="path-body">
     <div class="path-meta"><span>Tech-Einstieg</span></div>
@@ -430,12 +442,12 @@
 <a class="path-step" href="/pages/tdi-sidemount-diver_de.html"
    data-umami-event="course-card" data-umami-event-course="tdisidemount">
   <div class="path-img">
-    <img src="/assets/img/background/4.jpg" alt="TDI Sidemount Diver" loading="lazy" />
+    <img src="/assets/img/background/4-800.webp" srcset="/assets/img/background/4-400.webp 400w, /assets/img/background/4-800.webp 800w" sizes="(max-width: 575px) 88px, (max-width: 991px) 340px, (min-width: 1400px) 420px, 360px" alt="TDI Sidemount Diver" loading="lazy" decoding="async" />
   </div>
   <div class="path-body">
     <div class="path-meta"><span>Tech-Sidemount</span></div>
     <h4>TDI Sidemount Diver</h4>
-    <p>Für Sidemount auch bei Dekompressionstauchgängen: Antriebstechniken, Flaschen unter Wasser ab- und anclippen, Gaswechsel, optional zusätzliche Flaschen.</p>
+    <p>Für Sidemount auch bei Dekompressionstauchgängen: weitere Flossenschläge, Flaschen unter Wasser ab- und anclippen, Gaswechsel, auf Wunsch zusätzliche Flaschen.</p>
     <p class="path-quote">„…without him I might never have found how much I love sidemount!“ <span>Chris K.</span></p>
     
     <div class="path-facts">
@@ -444,7 +456,7 @@
     </div>
     
     <p class="path-prereq">Open Water Diver, ab 18</p>
-    <p class="path-next" data-next-end="2027-04-18">Nächster Termin: 17.–18.04.2027 · 3 Plätze frei</p>
+    <p class="path-next" data-next-end="2027-04-18">Nächster Termin: 17.–18.04.2027 · Plätze frei</p>
     <span class="link-arrow">Details</span>
   </div>
 </a>
@@ -489,7 +501,7 @@
 <a class="path-step path-extra" href="/pages/sdi-dpv-diver_de.html"
    data-umami-event="course-card" data-umami-event-course="sdidpv">
   <div class="path-img">
-    <img src="/assets/img/courses/tdi-dpv.jpg" alt="SDI DPV" loading="lazy" />
+    <img src="/assets/img/courses/tdi-dpv-800.webp" srcset="/assets/img/courses/tdi-dpv-400.webp 400w, /assets/img/courses/tdi-dpv-800.webp 800w" sizes="(max-width: 767px) 100vw, 240px" alt="SDI DPV" loading="lazy" decoding="async" />
   </div>
   <div class="path-body">
     <div class="path-meta"><span>Ergänzung</span></div>
@@ -519,7 +531,7 @@
 <a class="path-step path-extra" href="/pages/tdi-advanced-nitrox_de.html"
    data-umami-event="course-card" data-umami-event-course="tdiadvancedNitrox">
   <div class="path-img">
-    <img src="/assets/img/courses/tdi-adv-nitrox.jpg" alt="TDI Advanced Nitrox" loading="lazy" />
+    <img src="/assets/img/courses/tdi-adv-nitrox-800.webp" srcset="/assets/img/courses/tdi-adv-nitrox-400.webp 400w, /assets/img/courses/tdi-adv-nitrox-800.webp 800w" sizes="(max-width: 767px) 100vw, 240px" alt="TDI Advanced Nitrox" loading="lazy" decoding="async" />
   </div>
   <div class="path-body">
     <div class="path-meta"><span>Gas</span></div>
@@ -549,7 +561,7 @@
 <a class="path-step path-extra" href="/pages/tdi-decompression-procedures_de.html"
    data-umami-event="course-card" data-umami-event-course="tdideco">
   <div class="path-img">
-    <img src="/assets/img/about/christof-wide.jpg" alt="TDI Decompression Procedures" loading="lazy" />
+    <img src="/assets/img/about/christof-wide-800.webp" srcset="/assets/img/about/christof-wide-400.webp 400w, /assets/img/about/christof-wide-800.webp 800w" sizes="(max-width: 767px) 100vw, 240px" alt="TDI Decompression Procedures" loading="lazy" decoding="async" />
   </div>
   <div class="path-body">
     <div class="path-meta"><span>Deko</span></div>
@@ -655,7 +667,7 @@
 <a class="path-step" href="/pages/gue-fundamentals_de.html"
    data-umami-event="course-card" data-umami-event-course="fundamentals">
   <div class="path-img">
-    <img src="/assets/img/courses/fundies.jpg" alt="GUE Fundamentals" loading="lazy" />
+    <img src="/assets/img/courses/fundies-800.webp" srcset="/assets/img/courses/fundies-400.webp 400w, /assets/img/courses/fundies-800.webp 800w" sizes="(max-width: 575px) 88px, (max-width: 991px) 340px, (min-width: 1400px) 420px, 360px" alt="GUE Fundamentals" loading="lazy" decoding="async" />
   </div>
   <div class="path-body">
     <div class="path-meta"><span>Grundlagen</span></div>
@@ -687,7 +699,7 @@
 <a class="path-step" href="/pages/gue-advanced-open-water-diver_de.html"
    data-umami-event="course-card" data-umami-event-course="advancedOpenWater">
   <div class="path-img">
-    <img src="/assets/img/courses/tech-fundi-full.jpg" alt="GUE Advanced Open Water Diver" loading="lazy" />
+    <img src="/assets/img/courses/tech-fundi-full-800.webp" srcset="/assets/img/courses/tech-fundi-full-400.webp 400w, /assets/img/courses/tech-fundi-full-800.webp 800w" sizes="(max-width: 575px) 88px, (max-width: 991px) 340px, (min-width: 1400px) 420px, 360px" alt="GUE Advanced Open Water Diver" loading="lazy" decoding="async" />
   </div>
   <div class="path-body">
     <div class="path-meta"><span>Aufbau</span></div>
@@ -717,7 +729,7 @@
 <a class="path-step" href="/pages/gue-dpv-1_de.html"
    data-umami-event="course-card" data-umami-event-course="dpb1">
   <div class="path-img">
-    <img src="/assets/img/courses/dpv.jpg" alt="GUE DPV 1" loading="lazy" />
+    <img src="/assets/img/courses/dpv-800.webp" srcset="/assets/img/courses/dpv-400.webp 400w, /assets/img/courses/dpv-800.webp 800w" sizes="(max-width: 575px) 88px, (max-width: 991px) 340px, (min-width: 1400px) 420px, 360px" alt="GUE DPV 1" loading="lazy" decoding="async" />
   </div>
   <div class="path-body">
     <div class="path-meta"><span>Level 1</span></div>
@@ -731,7 +743,7 @@
     </div>
     
     <p class="path-prereq">GUE-Grundkurs, 75 Tauchgänge, ab 16</p>
-    <p class="path-next" data-next-end="2027-07-18">Nächster Termin: 16.–18.07.2027 · 3 Plätze frei</p>
+    <p class="path-next" data-next-end="2027-07-18">Nächster Termin: 16.–18.07.2027 · Plätze frei</p>
     <span class="link-arrow">Details</span>
   </div>
 </a>
@@ -770,7 +782,7 @@
 <a class="path-step path-extra" href="/pages/gue-navigation-primer_de.html"
    data-umami-event="course-card" data-umami-event-course="navigationPrimer">
   <div class="path-img">
-    <img src="/assets/img/courses/nav.jpg" alt="GUE Navigation Primer" loading="lazy" />
+    <img src="/assets/img/courses/nav-800.webp" srcset="/assets/img/courses/nav-400.webp 400w, /assets/img/courses/nav-800.webp 800w" sizes="(max-width: 767px) 100vw, 240px" alt="GUE Navigation Primer" loading="lazy" decoding="async" />
   </div>
   <div class="path-body">
     <div class="path-meta"><span>Primer</span></div>
@@ -801,7 +813,7 @@
 <a class="path-step path-extra" href="/pages/gue-primer_de.html"
    data-umami-event="course-card" data-umami-event-course="morecourses">
   <div class="path-img">
-    <img src="/assets/img/courses/doubles.jpg" alt="Weitere GUE-Primer" loading="lazy" />
+    <img src="/assets/img/courses/doubles-800.webp" srcset="/assets/img/courses/doubles-400.webp 400w, /assets/img/courses/doubles-800.webp 800w" sizes="(max-width: 767px) 100vw, 240px" alt="Weitere GUE-Primer" loading="lazy" decoding="async" />
   </div>
   <div class="path-body">
     <div class="path-meta"><span>Primer</span></div>
@@ -919,7 +931,7 @@
     <a href="/pages/about_de.html" data-umami-event="about-page">
       <img
         class="mx-auto rounded-circle"
-        src="/assets/img/about/christofabout.jpg" loading="lazy"
+        src="/assets/img/about/christofabout-800.webp" srcset="/assets/img/about/christofabout-400.webp 400w, /assets/img/about/christofabout-800.webp 800w" sizes="(max-width: 575px) 180px, 225px" loading="lazy"
         alt="Mehr über mich"
       />
     </a>
@@ -928,6 +940,7 @@
     
     <p class="about-story"><a class="link-arrow" href="/2026/06/08/vom-owd-zum-sidewinder.html" title="Mir fehlt etwas: vom OWD zum Sidewinder" data-umami-event="about-story">Meine Geschichte im Blog</a></p>
     
+    <p class="about-story about-podcasts"><a class="link-arrow" href="/pages/about_de.html#podcasts" data-umami-event="about-podcasts">Zu Gast in den Podcasts Speaking Sidemount und Off Gassing</a></p>
 
     <ul class="list-inline social-buttons">
       
@@ -966,9 +979,9 @@
     <div class="teaching-grid">
       
       <div class="teaching-item">
-        <h4>Freiwasser statt Pool</h4>
-        <p>Getaucht wird in Seen der Region, etwa am Rheinauer See oder in St. Leon. Kurse laufen in der Regel von März bis November.</p>
-        
+        <h4>Seen der Region</h4>
+        <p>Regelmäßig zum Beispiel am Rheinauer See oder in St. Leon, je nach Sicht, Wetter und Kursinhalt. Kurse laufen in der Regel von März bis November.</p>
+        <a class="link-arrow" href="/pages/kursorte_de.html">Wo die Kurse stattfinden</a>
       </div>
       
       <div class="teaching-item">
@@ -1005,7 +1018,7 @@
     <div class="fit-grid">
       <div class="fit-col fit-yes">
         <h3 class="fit-title">Das passt</h3>
-        <ul><li>Du willst besser tauchen und nicht nur ein weiteres Brevet sammeln.</li><li>Du willst eine ehrliche Rückmeldung. Bei GUE bewerte ich jede Fertigkeit auf einer Skala von 1 bis 5 und gehe jede einzelne mit dir durch.</li><li>Du lernst gern in einer kleinen Gruppe mit höchstens drei Teilnehmern, im Freiwasser statt im Pool.</li><li>Du hast keinen festen Tauchpartner. Einzelanmeldungen bringe ich zusammen.</li><li>Fehlt noch etwas, hängst du weitere Tage zum selben Tagessatz an.</li></ul>
+        <ul><li>Du willst besser tauchen und nicht nur ein weiteres Brevet sammeln.</li><li>Du willst eine ehrliche Rückmeldung. Bei GUE bewerte ich jede Fertigkeit auf einer Skala von 1 bis 5 und gehe jede einzelne mit dir durch.</li><li>Du lernst gern in einer kleinen Gruppe mit höchstens drei Teilnehmern.</li><li>Du hast keinen festen Tauchpartner. Einzelanmeldungen bringe ich zusammen.</li><li>Fehlt noch etwas, hängst du weitere Tage zum selben Tagessatz an.</li></ul>
       </div>
       <div class="fit-col fit-no">
         <h3 class="fit-title">Das passt nicht</h3>
@@ -1017,6 +1030,173 @@
 </section>
 
 
+<!-- Referenzen -->
+<section class="page-section bg-light" id="timeline">
+  <div class="container">
+    <div class="text-center">
+      <p class="kicker kicker-center">Referenzen</p>
+      <h2 class="section-heading">Was Kursteilnehmer sagen</h2>
+      <div class="section-intro"><p>Rückmeldungen aus Sidemount, GUE-Kursen und Personal Training, jeweils im Original.</p></div>
+    </div>
+    <div class="quote-grid" id="quoteGrid">
+      
+      <figure class="quote-card">
+        <blockquote><p>Als GUE-Taucher war mir bei meinem Einstieg ins Sidemount-Tauchen wichtig, an meine bisherige Ausbildung anknüpfen zu können. Bei Christof habe ich mich damit sehr gut aufgehoben gefühlt. Er versteht die Denkweise und den Anspruch, die man aus der GUE-Ausbildung mitbringt, und kann darauf beim Wechsel zur Sidemount-Konfiguration aufbauen. Auch mit meinem Razor-System war ich bei ihm bestens aufgehoben. Besonders gefallen hat mir, dass wir die Konfiguration und die Abläufe gemeinsam durchgearbeitet haben und ich die Hintergründe der Anpassungen nachvollziehen konnte. Für mich war der Kurs eine wertvolle Erweiterung meiner bisherigen Taucherfahrung. Wer aus dem GUE-Umfeld kommt und Sidemount kennenlernen möchte, dem kann ich Christof aus meiner persönlichen Erfahrung empfehlen.</p></blockquote>
+        <figcaption>
+          <span class="quote-initials" aria-hidden="true">LR</span>
+          <div><strong>Leif R.</strong><span>sidemount</span></div>
+        </figcaption>
+        <p class="quote-post"><a class="link-arrow" href="/2026/10/18/breakaway-oder-fester-boltsnap.html" data-umami-event="testimonial-post">Im Blog: Breakaway oder fest: der Boltsnap am Longhose</a></p>
+      </figure>
+      
+      <figure class="quote-card">
+        <blockquote><p>Ich habe meinen Performance Diver bei Christof gemacht, es war der beste Tauchkurs den ich je hatte und eine sehr gute Einführung in das GUE System. Bei Christof merkt man direkt die umfangreiche Erfahrung, er hat sich sehr viel Zeit für mich genommen, hat strukturiert meine Probleme herausgearbeitet und mir dann wirksame Tipps an die Hand gegeben um an diesen Problemen sowohl im Wasser als auch außerhalb vom Wasser zu arbeiten.</p></blockquote>
+        <figcaption>
+          <img src="/assets/img/testimonials/tobiasG.jpg" alt="" loading="lazy" />
+          <div><strong>Tobias G.</strong><span>performance diver</span></div>
+        </figcaption>
+        <p class="quote-post"><a class="link-arrow" href="/2026/06/09/GUE-Fundamentals-oder-TDI-Intro-to-Tech.html" data-umami-event="testimonial-post">Im Blog: GUE Fundamentals oder TDI Intro to Tech? Auch das ist die falsche Frage</a></p>
+      </figure>
+      
+      <figure class="quote-card">
+        <blockquote><p>Habe bei Christof den DPV 1 im September 2026 gemacht. Der Kurs ging über 3 lehrreiche Tage mit sehr gut strukturierten Präsentationen, genug Zeit für Diskussionen und 6 Stunden intensiver Praxis unter Wasser. Kann den Kurs zu 100 % empfehlen!</p></blockquote>
+        <figcaption>
+          <img src="/assets/img/testimonials/danielS.jpg" alt="" loading="lazy" />
+          <div><strong>Daniel S.</strong><span>dpv 1</span></div>
+        </figcaption>
+        <p class="quote-post"><a class="link-arrow" href="/2026/06/23/dpv-der-trigger-ist-der-einfachste-teil.html" data-umami-event="testimonial-post">Im Blog: Der Trigger ist der einfachste Teil</a></p>
+      </figure>
+      
+      <figure class="quote-card q-more-sm">
+        <blockquote><p>Der Kurs war super strukturiert und die Theorie wurde sehr gut vermittelt. Ich konnte viel Nützliches aus den verschiedenen Tauchgängen mitnehmen und vor allem bin ich durch die neu hinzugewonnenen Fähigkeiten eine selbstbewusstere Taucherin mit verbesserter Team-Awareness sowie verbesserten Navigationsmöglichkeiten geworden was mein persönliches Ziel war. Christof hat mit sehr guten didaktischen Fähigkeiten geschafft „aha“ Momente zu etablieren, die hängen bleiben. Danke für diesen wirklich tollen Kurs!</p></blockquote>
+        <figcaption>
+          <img src="/assets/img/testimonials/johannaS.jpg" alt="" loading="lazy" />
+          <div><strong>Johanna S.</strong><span>navigation primer</span></div>
+        </figcaption>
+        <p class="quote-post"><a class="link-arrow" href="/2026/07/14/Navigation-Wiederfinden-ist-keine-Gl%C3%BCckssache.html" data-umami-event="testimonial-post">Im Blog: Navigation: Wiederfinden ist keine Glückssache</a></p>
+      </figure>
+      
+      <figure class="quote-card q-more-sm q-more-lg">
+        <blockquote><p>Christof is a very open-minded, well educated and teamoriented diver and teacher. The course was perfectly organised, with all informations some days before, a very good structure incl. lessons, dives and nutrition. He really helped me with my kicking-problem by very good analysis. It was always fun, safe and helpful and I'm really to use the stuff now regularly.</p></blockquote>
+        <figcaption>
+          <img src="/assets/img/testimonials/cornelia.jpeg" alt="" loading="lazy" />
+          <div><strong>Conny E.</strong><span>navigation primer</span></div>
+        </figcaption>
+        <p class="quote-post"><a class="link-arrow" href="/2026/07/14/Navigation-Wiederfinden-ist-keine-Gl%C3%BCckssache.html" data-umami-event="testimonial-post">Im Blog: Navigation: Wiederfinden ist keine Glückssache</a></p>
+      </figure>
+      
+      <figure class="quote-card q-more-sm q-more-lg">
+        <blockquote><p>Christof taught me doubles and sidemount, and without him I might never have found how much I love sidemount! As a GUE instructor who is also a sidemount expert, he helped me discover the diving that suits me. Sidemount was tough at first, and I had a love-hate relationship with my gear, but Christof helped me master it for the diving I do. Highly recommended!</p></blockquote>
+        <figcaption>
+          <img src="/assets/img/testimonials/chrisK.jpg" alt="" loading="lazy" />
+          <div><strong>Chris K.</strong><span>technical fundamentals & tdi sidemount</span></div>
+        </figcaption>
+        <p class="quote-post"><a class="link-arrow" href="/2026/10/18/breakaway-oder-fester-boltsnap.html" data-umami-event="testimonial-post">Im Blog: Breakaway oder fest: der Boltsnap am Longhose</a></p>
+      </figure>
+      
+      <figure class="quote-card q-more-sm q-more-lg">
+        <blockquote><p>Christof is a fantastic instructor who really wants to help students succeed and progress, also giving insights from his own dive experience to show why things are taught the way they are. He gave fair and realistic assessments and showed very clear steps for improvement towards becoming a better diver. It was also a very fun weekend. Would very much recommend!</p></blockquote>
+        <figcaption>
+          <img src="/assets/img/testimonials/chrisK.jpg" alt="" loading="lazy" />
+          <div><strong>Chris K.</strong><span>classic fundamentals</span></div>
+        </figcaption>
+        <p class="quote-post"><a class="link-arrow" href="/2026/06/09/GUE-Fundamentals-oder-TDI-Intro-to-Tech.html" data-umami-event="testimonial-post">Im Blog: GUE Fundamentals oder TDI Intro to Tech? Auch das ist die falsche Frage</a></p>
+      </figure>
+      
+      <figure class="quote-card q-more-sm q-more-lg">
+        <blockquote><p>Christof has profound knowledge and experience which he conveys in a structured and well-digestible form. He was also happy to answer my numerous questions, as it is clearly important to him to get across the bigger picture. The in-water sessions also happened in a calm and pleasant atmosphere, and the remaining quirks in my sidemount setup were sorted out in no time. All in all, the two days were a lot of fun, and they also included proper wind-down time at the local gastronomy with interesting chats around the dive industry.</p></blockquote>
+        <figcaption>
+          <img src="/assets/img/testimonials/kaiH.jpg" alt="" loading="lazy" />
+          <div><strong>Kai H.</strong><span>tdi sidemount</span></div>
+        </figcaption>
+        <p class="quote-post"><a class="link-arrow" href="/2026/10/18/breakaway-oder-fester-boltsnap.html" data-umami-event="testimonial-post">Im Blog: Breakaway oder fest: der Boltsnap am Longhose</a></p>
+      </figure>
+      
+      <figure class="quote-card q-more-sm q-more-lg">
+        <blockquote><p>I struggled a long time with some things. Christof brought me back on track and i really learned a lot from him. I was absolutely happy with him as an instructor and would highly recommend him to others. Looking forward to next spring where the navigation Primer is in planning. Glad I met him, he pulled me out of frustration and set my diving to a new level Thank you so much Christof !!!</p></blockquote>
+        <figcaption>
+          <img src="/assets/img/testimonials/FrankB.jpg" alt="" loading="lazy" />
+          <div><strong>Frank B.</strong><span>personal training & upgrade fundamentals</span></div>
+        </figcaption>
+        <p class="quote-post"><a class="link-arrow" href="/2026/08/18/Die-Kunst,-langsamer-zu-werden.html" data-umami-event="testimonial-post">Im Blog: Die Kunst, langsamer zu werden</a></p>
+      </figure>
+      
+      <figure class="quote-card q-more-sm q-more-lg">
+        <blockquote><p>Christof was very patient, attentive, and knowledgeable. He communicated clearly and effectively. He was not degrading or unprofessional. He gives honest feedback in a way that is supportive and motivating, and works with students to aid forward progress. I would definitely take additional training with Christof. Highly recommended.</p></blockquote>
+        <figcaption>
+          <img src="/assets/img/testimonials/amber.jpeg" alt="" loading="lazy" />
+          <div><strong>Amber G.</strong><span>doubles primer</span></div>
+        </figcaption>
+      </figure>
+      
+    </div>
+    <p class="quote-more" id="quoteMore" hidden>
+      <button type="button" class="btn btn-outline-primary" aria-controls="quoteGrid" aria-expanded="false" data-umami-event="testimonials-more">Alle Rückmeldungen ansehen (10)</button>
+    </p>
+    <script>
+      (function () {
+        var g = document.getElementById('quoteGrid'), w = document.getElementById('quoteMore');
+        if (!g || !w) return;
+        var b = w.querySelector('button');
+        g.classList.add('is-collapsed');
+        w.hidden = false;
+        b.addEventListener('click', function () {
+          g.classList.remove('is-collapsed');
+          b.setAttribute('aria-expanded', 'true');
+          w.hidden = true;
+        });
+      })();
+    </script>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+<!-- Blog-Teaser -->
+<section class="page-section" id="blogteaser">
+  <div class="container">
+    <div class="text-center">
+      <p class="kicker kicker-center">Blog</p>
+      <h2 class="section-heading">Neu im Blog</h2>
+      <div class="section-intro"><p>Ausrüstung, Konfiguration und Denkweise. Aus Kursen und eigenen Tauchgängen.</p></div>
+    </div>
+    <div class="post-grid">
+      
+      <a class="post-card is-featured" href="/2026/06/03/Backmount-oder-Sidemount-die-falsche-Frage.html">
+        <div class="post-img"><img src="/assets/img/blog/thumb/f8509596-1425-4609-a389-666790551c6d-800.webp" srcset="/assets/img/blog/thumb/f8509596-1425-4609-a389-666790551c6d-400.webp 400w, /assets/img/blog/thumb/f8509596-1425-4609-a389-666790551c6d-800.webp 800w" sizes="(max-width: 575px) 96px, (max-width: 991px) 560px, (min-width: 1400px) 420px, 360px" alt="" loading="lazy" /></div>
+        <p class="post-date">Grundlagen · 03.06.2026</p>
+        <h4>Backmount oder Sidemount: die falsche Frage</h4>
+        <p>“Jedes System ist ein Werkzeug. Wer das vergisst, kauft den falschen Hammer.”</p>
+      </a>
+      
+      <a class="post-card" href="/2026/10/18/breakaway-oder-fester-boltsnap.html">
+        <div class="post-img"><img src="/assets/img/blog/thumb/longhose-boltsnap-800.webp" srcset="/assets/img/blog/thumb/longhose-boltsnap-400.webp 400w, /assets/img/blog/thumb/longhose-boltsnap-800.webp 800w" sizes="(max-width: 575px) 96px, (max-width: 991px) 560px, (min-width: 1400px) 420px, 360px" alt="" loading="lazy" /></div>
+        <p class="post-date">18.10.2026</p>
+        <h4>Breakaway oder fest: der Boltsnap am Longhose</h4>
+        <p>Jahrelang war der Breakaway mein Standard. Ein Full-Cave-Kurs meiner Schüler hat mich dazu gebracht, die Rechnung neu aufzumachen.</p>
+      </a>
+      
+      <a class="post-card" href="/2026/10/04/sidemount-flaschenwahl.html">
+        <div class="post-img"><img src="/assets/img/blog/thumb/sidemount-flaschenwahl-800.webp" srcset="/assets/img/blog/thumb/sidemount-flaschenwahl-400.webp 400w, /assets/img/blog/thumb/sidemount-flaschenwahl-800.webp 800w" sizes="(max-width: 575px) 96px, (max-width: 991px) 560px, (min-width: 1400px) 420px, 360px" alt="" loading="lazy" /></div>
+        <p class="post-date">04.10.2026</p>
+        <h4>Sidemount-Flaschen: Alu oder Stahl, welche Größe?</h4>
+        <p>Alu, schwerer Stahl, leichter Stahl: warum die 12-l-Leichtstahlflasche für deutsche Seen der beste Kompromiss ist</p>
+      </a>
+      
+    </div>
+    <div class="section-footer-link">
+      <a class="btn btn-outline-primary" href="/pages/blog_de.html">Alle Artikel</a>
+    </div>
+  </div>
+</section>
+
+
+
 
 <!-- xDeep Section: eigenes Set, exklusiv bei Deepstop -->
 <section class="page-section xdeep-feature" id="xdeep">
@@ -1024,7 +1204,7 @@
     <div class="row align-items-center gy-4 gx-lg-5">
       <div class="col-lg-6">
         <a class="xdeep-img" data-bs-toggle="modal" href="#xdeepModal" data-umami-event="xdeep-image">
-          <img src="/assets/img/x-deep-christof-muller-sidemount-set.jpg" loading="lazy" alt="XDEEP Stealth Tec Christof Müller Set" />
+          <img src="/assets/img/x-deep-christof-muller-sidemount-set-800.webp" srcset="/assets/img/x-deep-christof-muller-sidemount-set-400.webp 400w, /assets/img/x-deep-christof-muller-sidemount-set-800.webp 800w" sizes="(max-width: 991px) calc(100vw - 24px), 540px" loading="lazy" alt="XDEEP Stealth Tec Christof Müller Set" />
         </a>
       </div>
       <div class="col-lg-6">
@@ -1035,17 +1215,8 @@
           </a>
         </div>
         <h2 class="xdeep-title">XDEEP Stealth Tec Christof Müller Set</h2>
-        <div class="xdeep-body"><p>Upgrade-Set für das XDEEP Stealth: Es verändert das Konzept nicht, sondern optimiert es gezielt. Das Ergebnis ist ein aufgeräumtes, schwarzes Setup mit klarer Linienführung.</p>
-
-<p>Anders als beim unmodifizierten Stealth ist alles vormontiert, du musst nichts selbst umbauen.</p>
-
-<p>Keine Experimente, nur sinnvolle Verfeinerung.</p>
+        <div class="xdeep-body"><p>Upgrade-Set für das XDEEP Stealth mit schwarzen Aluminium-D-Ringen, abgestimmten Bleistoppern, Triglide und Bungee Hook. Alles ist vormontiert, du musst nichts selbst umbauen.</p>
 </div>
-        
-        <p class="xdeep-set-title">Im Set</p>
-        <ul class="xdeep-set">
-          <li>Schwarze Aluminium-D-Ringe</li><li>Farblich abgestimmte Bleistopper</li><li>Stainless Steel Triglide with Eye für das Loop-Bungee</li><li>Bungee Hook für die Wing-Bungees</li>
-        </ul>
         
         <div class="xdeep-actions">
           <a class="btn btn-primary btn-xl" href="https://www.deepstop.de/de/x-deep-stealth-sets-20/2758-x-deep-christof-muller-sidemount-set.html" target="_blank" rel="noopener" data-umami-event="xdeep-shop">Bei Deepstop ansehen</a>
@@ -1071,7 +1242,7 @@
               <div class="text-center">
                 <h2>XDEEP Stealth Tec Christof Müller Set</h2>
               </div>
-              <img class="img-fluid d-block mx-auto" loading="lazy" src="/assets/img/x-deep-christof-muller-sidemount-set.jpg" alt="XDEEP Stealth Tec Christof Müller Set" />
+              <img class="img-fluid d-block mx-auto" loading="lazy" src="/assets/img/x-deep-christof-muller-sidemount-set-800.webp" srcset="/assets/img/x-deep-christof-muller-sidemount-set-400.webp 400w, /assets/img/x-deep-christof-muller-sidemount-set-800.webp 800w" sizes="(max-width: 575px) 100vw, 500px" alt="XDEEP Stealth Tec Christof Müller Set" />
               <div class="mt-4"><p>Dieses Upgrade-Set für das XDEEP Stealth wurde entwickelt, um das bestehende Konzept nicht zu verändern, sondern gezielt zu optimieren.</p>
 
 <p>Die Kombination aus hochwertiger Stickerei auf der Rückenblase, schwarzen Aluminium‑D‑Ringen und farblich abgestimmten Bleistoppern sorgt für ein einheitliches, reduziertes Erscheinungsbild und unterstreicht den technischen Anspruch des Systems.</p>
@@ -1114,199 +1285,6 @@
 
 
 
-
-<!-- Zu Gast in Podcasts (nur Links, kein eingebetteter Player: keine Datenübertragung vor dem Klick) -->
-<section class="page-section podcasts" id="podcasts">
-  <div class="container">
-    <div class="text-center">
-      <p class="kicker kicker-center">Im Gespräch</p>
-      <h2 class="section-heading">Zu Gast in Podcasts</h2>
-      <div class="section-intro"><p>Gespräche über Ausbildung, Sidemount und den Unterschied zwischen Erfahrung und Können. Beide Folgen auf Englisch.</p></div>
-    </div>
-    <div class="podcast-grid">
-      
-      <a class="podcast-card" href="https://www.sidemountpros.com/speakingsidemountpodcast/2026/7/20/experience-doesnt-equal-expertise-christof-muller-speaking-sidemount-ep-122" target="_blank" rel="noopener"
-         data-umami-event="podcast" data-umami-event-show="speaking-sidemount-122">
-        <span class="podcast-icon" aria-hidden="true"><i class="fas fa-podcast"></i></span>
-        <div class="podcast-body">
-          <p class="podcast-show">Speaking Sidemount · Folge 122 · Juli 2026</p>
-          <h4>Experience doesn't equal expertise</h4>
-          <p>Im Podcast von Sidemount Pros: warum viele Tauchgänge allein noch kein Können bedeuten.</p>
-          <span class="link-arrow">Folge anhören</span>
-        </div>
-      </a>
-      
-      <a class="podcast-card" href="https://podcasts.apple.com/us/podcast/a-conversation-with-christof-m%C3%BCller/id1689550050?i=1000720836485" target="_blank" rel="noopener"
-         data-umami-event="podcast" data-umami-event-show="off-gassing">
-        <span class="podcast-icon" aria-hidden="true"><i class="fas fa-podcast"></i></span>
-        <div class="podcast-body">
-          <p class="podcast-show">Off Gassing: A Scuba Podcast · August 2025 · 67 Min.</p>
-          <h4>A Conversation with Christof Müller</h4>
-          <p>Vom geschenkten Open-Water-Kurs zum Instruktor, E-Learning oder Präsenzunterricht und wie gute Ausbildungswege aufgebaut sind.</p>
-          <span class="link-arrow">Folge anhören</span>
-        </div>
-      </a>
-      
-    </div>
-  </div>
-</section>
-
-
-
-
-<!-- Referenzen -->
-<section class="page-section bg-light" id="timeline">
-  <div class="container">
-    <div class="text-center">
-      <p class="kicker kicker-center">Referenzen</p>
-      <h2 class="section-heading">Was Kursteilnehmer sagen</h2>
-      <div class="section-intro"><p>Rückmeldungen aus Sidemount, GUE-Kursen und Personal Training, jeweils im Original.</p></div>
-    </div>
-    <div class="quote-grid">
-      
-      <figure class="quote-card">
-        <blockquote><p>Ich habe meinen Performance Diver bei Christof gemacht, es war der beste Tauchkurs den ich je hatte und eine sehr gute Einführung in das GUE System. Bei Christof merkt man direkt die umfangreiche Erfahrung, er hat sich sehr viel Zeit für mich genommen, hat strukturiert meine Probleme herausgearbeitet und mir dann wirksame Tipps an die Hand gegeben um an diesen Problemen sowohl im Wasser als auch außerhalb vom Wasser zu arbeiten.</p></blockquote>
-        <figcaption>
-          <img src="/assets/img/testimonials/tobiasG.jpg" alt="" loading="lazy" />
-          <div><strong>Tobias G.</strong><span>performance diver</span></div>
-        </figcaption>
-        <p class="quote-post"><a class="link-arrow" href="/2026/06/09/GUE-Fundamentals-oder-TDI-Intro-to-Tech.html" data-umami-event="testimonial-post">Im Blog: GUE Fundamentals oder TDI Intro to Tech? Auch das ist die falsche Frage</a></p>
-      </figure>
-      
-      <figure class="quote-card">
-        <blockquote><p>Der Kurs war super strukturiert und die Theorie wurde sehr gut vermittelt. Ich konnte viel Nützliches aus den verschiedenen Tauchgängen mitnehmen und vor allem bin ich durch die neu hinzugewonnenen Fähigkeiten eine selbstbewusstere Taucherin mit verbesserter Team-Awareness sowie verbesserten Navigationsmöglichkeiten geworden was mein persönliches Ziel war. Christof hat mit sehr guten didaktischen Fähigkeiten geschafft „aha“ Momente zu etablieren, die hängen bleiben. Danke für diesen wirklich tollen Kurs!</p></blockquote>
-        <figcaption>
-          <img src="/assets/img/testimonials/johannaS.jpg" alt="" loading="lazy" />
-          <div><strong>Johanna S.</strong><span>navigation primer</span></div>
-        </figcaption>
-        <p class="quote-post"><a class="link-arrow" href="/2026/07/14/Navigation-Wiederfinden-ist-keine-Gl%C3%BCckssache.html" data-umami-event="testimonial-post">Im Blog: Navigation: Wiederfinden ist keine Glückssache</a></p>
-      </figure>
-      
-      <figure class="quote-card">
-        <blockquote><p>Christof is a very open-minded, well educated and teamoriented diver and teacher. The course was perfectly organised, with all informations some days before, a very good structure incl. lessons, dives and nutrition. He really helped me with my kicking-problem by very good analysis. It was always fun, safe and helpful and I'm really to use the stuff now regularly.</p></blockquote>
-        <figcaption>
-          <img src="/assets/img/testimonials/cornelia.jpeg" alt="" loading="lazy" />
-          <div><strong>Conny E.</strong><span>navigation primer</span></div>
-        </figcaption>
-        <p class="quote-post"><a class="link-arrow" href="/2026/07/14/Navigation-Wiederfinden-ist-keine-Gl%C3%BCckssache.html" data-umami-event="testimonial-post">Im Blog: Navigation: Wiederfinden ist keine Glückssache</a></p>
-      </figure>
-      
-      <figure class="quote-card">
-        <blockquote><p>Christof taught me doubles and sidemount, and without him I might never have found how much I love sidemount! As a GUE instructor who is also a sidemount expert, he helped me discover the diving that suits me. Sidemount was tough at first, and I had a love-hate relationship with my gear, but Christof helped me master it for the diving I do. Highly recommended!</p></blockquote>
-        <figcaption>
-          <img src="/assets/img/testimonials/chrisK.jpg" alt="" loading="lazy" />
-          <div><strong>Chris K.</strong><span>technical fundamentals & tdi sidemount</span></div>
-        </figcaption>
-        <p class="quote-post"><a class="link-arrow" href="/2026/10/18/breakaway-oder-fester-boltsnap.html" data-umami-event="testimonial-post">Im Blog: Breakaway oder fest: der Boltsnap am Longhose</a></p>
-      </figure>
-      
-      <figure class="quote-card">
-        <blockquote><p>Christof is a fantastic instructor who really wants to help students succeed and progress, also giving insights from his own dive experience to show why things are taught the way they are. He gave fair and realistic assessments and showed very clear steps for improvement towards becoming a better diver. It was also a very fun weekend. Would very much recommend!</p></blockquote>
-        <figcaption>
-          <img src="/assets/img/testimonials/chrisK.jpg" alt="" loading="lazy" />
-          <div><strong>Chris K.</strong><span>classic fundamentals</span></div>
-        </figcaption>
-        <p class="quote-post"><a class="link-arrow" href="/2026/06/09/GUE-Fundamentals-oder-TDI-Intro-to-Tech.html" data-umami-event="testimonial-post">Im Blog: GUE Fundamentals oder TDI Intro to Tech? Auch das ist die falsche Frage</a></p>
-      </figure>
-      
-      <figure class="quote-card">
-        <blockquote><p>Als GUE-Taucher war mir bei meinem Einstieg ins Sidemount-Tauchen wichtig, an meine bisherige Ausbildung anknüpfen zu können. Bei Christof habe ich mich damit sehr gut aufgehoben gefühlt. Er versteht die Denkweise und den Anspruch, die man aus der GUE-Ausbildung mitbringt, und kann darauf beim Wechsel zur Sidemount-Konfiguration aufbauen. Auch mit meinem Razor-System war ich bei ihm bestens aufgehoben. Besonders gefallen hat mir, dass wir die Konfiguration und die Abläufe gemeinsam durchgearbeitet haben und ich die Hintergründe der Anpassungen nachvollziehen konnte. Für mich war der Kurs eine wertvolle Erweiterung meiner bisherigen Taucherfahrung. Wer aus dem GUE-Umfeld kommt und Sidemount kennenlernen möchte, dem kann ich Christof aus meiner persönlichen Erfahrung empfehlen.</p></blockquote>
-        <figcaption>
-          <span class="quote-initials" aria-hidden="true">LR</span>
-          <div><strong>Leif R.</strong><span>sidemount</span></div>
-        </figcaption>
-        <p class="quote-post"><a class="link-arrow" href="/2026/10/18/breakaway-oder-fester-boltsnap.html" data-umami-event="testimonial-post">Im Blog: Breakaway oder fest: der Boltsnap am Longhose</a></p>
-      </figure>
-      
-      <figure class="quote-card">
-        <blockquote><p>Christof has profound knowledge and experience which he conveys in a structured and well-digestible form. He was also happy to answer my numerous questions, as it is clearly important to him to get across the bigger picture. The in-water sessions also happened in a calm and pleasant atmosphere, and the remaining quirks in my sidemount setup were sorted out in no time. All in all, the two days were a lot of fun, and they also included proper wind-down time at the local gastronomy with interesting chats around the dive industry.</p></blockquote>
-        <figcaption>
-          <img src="/assets/img/testimonials/kaiH.jpg" alt="" loading="lazy" />
-          <div><strong>Kai H.</strong><span>tdi sidemount</span></div>
-        </figcaption>
-        <p class="quote-post"><a class="link-arrow" href="/2026/10/18/breakaway-oder-fester-boltsnap.html" data-umami-event="testimonial-post">Im Blog: Breakaway oder fest: der Boltsnap am Longhose</a></p>
-      </figure>
-      
-      <figure class="quote-card">
-        <blockquote><p>Habe bei Christof den DPV 1 im September 2026 gemacht. Der Kurs ging über 3 lehrreiche Tage mit sehr gut strukturierten Präsentationen, genug Zeit für Diskussionen und 6 Stunden intensiver Praxis unter Wasser. Kann den Kurs zu 100 % empfehlen!</p></blockquote>
-        <figcaption>
-          <img src="/assets/img/testimonials/danielS.jpg" alt="" loading="lazy" />
-          <div><strong>Daniel S.</strong><span>dpv 1</span></div>
-        </figcaption>
-        <p class="quote-post"><a class="link-arrow" href="/2026/06/23/dpv-der-trigger-ist-der-einfachste-teil.html" data-umami-event="testimonial-post">Im Blog: Der Trigger ist der einfachste Teil</a></p>
-      </figure>
-      
-      <figure class="quote-card">
-        <blockquote><p>I struggled a long time with some things. Christof brought me back on track and i really learned a lot from him. I was absolutely happy with him as an instructor and would highly recommend him to others. Looking forward to next spring where the navigation Primer is in planning. Glad I met him, he pulled me out of frustration and set my diving to a new level Thank you so much Christof !!!</p></blockquote>
-        <figcaption>
-          <img src="/assets/img/testimonials/FrankB.jpg" alt="" loading="lazy" />
-          <div><strong>Frank B.</strong><span>personal training & upgrade fundamentals</span></div>
-        </figcaption>
-        <p class="quote-post"><a class="link-arrow" href="/2026/08/18/Die-Kunst,-langsamer-zu-werden.html" data-umami-event="testimonial-post">Im Blog: Die Kunst, langsamer zu werden</a></p>
-      </figure>
-      
-      <figure class="quote-card">
-        <blockquote><p>Christof was very patient, attentive, and knowledgeable. He communicated clearly and effectively. He was not degrading or unprofessional. He gives honest feedback in a way that is supportive and motivating, and works with students to aid forward progress. I would definitely take additional training with Christof. Highly recommended.</p></blockquote>
-        <figcaption>
-          <img src="/assets/img/testimonials/amber.jpeg" alt="" loading="lazy" />
-          <div><strong>Amber G.</strong><span>doubles primer</span></div>
-        </figcaption>
-      </figure>
-      
-    </div>
-  </div>
-</section>
-
-
-
-
-
-
-
-
-<!-- Blog-Teaser -->
-<section class="page-section" id="blogteaser">
-  <div class="container">
-    <div class="text-center">
-      <p class="kicker kicker-center">Blog</p>
-      <h2 class="section-heading">Neu im Blog</h2>
-      <div class="section-intro"><p>Ausrüstung, Konfiguration und Denkweise. Aus Kursen und eigenen Tauchgängen.</p></div>
-    </div>
-    <div class="post-grid">
-      
-      <a class="post-card is-featured" href="/2026/06/03/Backmount-oder-Sidemount-die-falsche-Frage.html">
-        <div class="post-img"><img src="/assets/img/blog/thumb/f8509596-1425-4609-a389-666790551c6d.jpg" alt="" loading="lazy" /></div>
-        <p class="post-date">Grundlagen · 03.06.2026</p>
-        <h4>Backmount oder Sidemount: die falsche Frage</h4>
-        <p>“Jedes System ist ein Werkzeug. Wer das vergisst, kauft den falschen Hammer.”</p>
-      </a>
-      
-      <a class="post-card" href="/2026/10/18/breakaway-oder-fester-boltsnap.html">
-        <div class="post-img"><img src="/assets/img/blog/thumb/longhose-boltsnap.jpg" alt="" loading="lazy" /></div>
-        <p class="post-date">18.10.2026</p>
-        <h4>Breakaway oder fest: der Boltsnap am Longhose</h4>
-        <p>Jahrelang war der Breakaway mein Standard. Ein Full-Cave-Kurs meiner Schüler hat mich dazu gebracht, die Rechnung neu aufzumachen.</p>
-      </a>
-      
-      <a class="post-card" href="/2026/10/04/sidemount-flaschenwahl.html">
-        <div class="post-img"><img src="/assets/img/blog/thumb/sidemount-flaschenwahl.jpg" alt="" loading="lazy" /></div>
-        <p class="post-date">04.10.2026</p>
-        <h4>Welche Flasche für Sidemount? Typ und Größe im Vergleich</h4>
-        <p>Alu, schwerer Stahl, leichter Stahl: warum die 12-l-Leichtstahlflasche für deutsche Seen der beste Kompromiss ist</p>
-      </a>
-      
-    </div>
-    <div class="section-footer-link">
-      <a class="btn btn-outline-primary" href="/pages/blog_de.html">Alle Artikel</a>
-    </div>
-  </div>
-</section>
-
-
-
-
-
-
 <!-- Kontakt-Band -->
 <section class="page-section cta-band" id="moreinfo">
   <div class="container">
@@ -1320,7 +1298,7 @@
     </div>
   </div>
 </section>
-<a class="sticky-cta" id="stickyCta" data-umami-event="sticky-contact" href="/pages/contact_de.html">Kurs anfragen</a>
+<a class="sticky-cta" id="stickyCta" data-umami-event="sticky-advice" href="/pages/contact_de.html?kurs=unsure&amp;message=Hallo+Christof%2C+ich+wei%C3%9F+noch+nicht%2C+welcher+Kurs+zu+mir+passt.+Bisher+tauche+ich%3A+">Frag mich, welcher Kurs passt</a>
 <script>
   (function () {
     var b = document.getElementById('stickyCta'), end = document.getElementById('moreinfo');
@@ -1352,16 +1330,16 @@
           
           <li class="list-inline-item">
             
-            <a href="https://www.facebook.com/christof.muller.735">
-              <i class="fab fa-facebook-f"></i>
+            <a href="https://www.facebook.com/christof.muller.735" aria-label="Facebook">
+              <svg class="svg-icon svg-icon-brand-facebook" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3" /></svg>
             </a>
             
           </li>
           
           <li class="list-inline-item">
             
-            <a href="https://www.instagram.com/christof.mueller">
-              <i class="fab fa-instagram"></i>
+            <a href="https://www.instagram.com/christof.mueller" aria-label="Instagram">
+              <svg class="svg-icon svg-icon-brand-instagram" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 4m0 4a4 4 0 0 1 4 -4h8a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-8a4 4 0 0 1 -4 -4z" /> <path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /> <path d="M16.5 7.5l0 .01" /></svg>
             </a>
             
           </li>

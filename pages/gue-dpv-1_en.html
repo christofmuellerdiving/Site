@@ -37,15 +37,12 @@
   <!-- Option 1: Bootstrap Bundle with Popper --><script defer src="/assets/vendor/bootstrap/bootstrap.bundle.min.js"></script>
   <link href="/assets/vendor/bootstrap/bootstrap.min.css" rel="stylesheet" />
 
-  <link href="/assets/css/all.min.css?v=1793957114" rel="stylesheet" type="text/css" />
-
   <!-- Schriften lokal (keine Verbindung zu Google) -->
   <link rel="preload" href="/assets/fonts/source-serif-4-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="/assets/fonts/playfair-display-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin />
-  <link href="/assets/css/fonts.css?v=1793957114" rel="stylesheet" />
+  <link href="/assets/css/fonts.css?v=1793997261" rel="stylesheet" />
   <!-- Custom styles for this theme -->
-  <!--<link href="assets/css/agency.min.css" rel="stylesheet">-->
-  <link href="/assets/css/agency.css?v=1793957114" rel="stylesheet" />
+  <link href="/assets/css/agency.css?v=1793997261" rel="stylesheet" />
 
   <!-- Page container change top padding when nav shrinks -->
   
@@ -58,7 +55,7 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav" data-hidewithscroll="hideScroll">
     <div class="container">
-        <a class="navbar-brand" href="/pages/index_en.html" aria-label="Christof Müller"><img height="50" src="/assets/img/logo.png" alt="Christof Müller" /></a>
+        <a class="navbar-brand" href="/pages/index_en.html" aria-label="Christof Müller"><img height="50" width="105" src="/assets/img/logo-nav.webp" alt="Christof Müller" /></a>
       <button class="navbar-toggler navbar-toggler-right collapsed" type="button" 
         data-bs-toggle="collapse"
 
@@ -66,7 +63,7 @@
         aria-controls="navbarResponsive"
         aria-expanded="false" 
         aria-label="Toggle navigation">
-        <i class="fas fa-bars"></i>
+        <svg class="svg-icon svg-icon-menu-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 6l16 0" /> <path d="M4 12l16 0" /> <path d="M4 18l16 0" /></svg>
       </button>
 
 
@@ -104,7 +101,7 @@
     </div>
   </nav>
 
-  <script src="/assets/js/custom.js?v=1793957114"></script>
+  <script src="/assets/js/custom.js?v=1793997261"></script>
   <!-- End Navigation -->
 
 
@@ -125,16 +122,17 @@
           
           <div><dt>Price</dt><dd>from €705</dd></div>
           <div class="cf-wide"><dt>Prerequisites</dt><dd>GUE entry course, 75 dives, age 16</dd></div>
-          <div class="cf-wide" data-next-end="2027-07-18"><dt>Next date</dt><dd>16–18 Jul 2027 · 3 spots left</dd></div>
+          <div class="cf-wide" data-next-end="2027-07-18"><dt>Next date</dt><dd>16–18 Jul 2027 · Spots available</dd></div>
         </dl>
-        <p class="course-note">At most three participants, always in open water, in English or German. I match up individual sign-ups. Meeting point and theory: Deepstop in Schwetzingen.</p>
+        <p class="course-note">At most three participants, always in open water, in English or German. I match up individual sign-ups. Meeting point and theory: <a href="/pages/kursorte_en.html" data-umami-event="course-page-places">Deepstop in Schwetzingen</a>.</p>
         <div class="course-hero-actions">
           <a class="btn btn-primary btn-xl" data-umami-event="course-page-enquiry" data-umami-event-course="gue-dpv-1" href="/pages/contact_en.html?message=Hi+Christof%2C+I%27m+interested+in%3A+GUE+DPV+1">Enquire about this course</a>
           <a class="btn btn-ghost-light btn-xl" href="#preise">Prices and dates</a>
+          <a class="btn btn-ghost-light btn-xl" href="/pages/gue-dpv-1-preparation_en.html" data-umami-event="course-page-prep-hero" data-umami-event-course="gue-dpv-1">Preparation</a>
         </div>
       </div>
       <figure class="course-hero-img">
-        <img src="/assets/img/courses/dpv-full.jpg" alt="GUE DPV 1" />
+        <img src="/assets/img/courses/dpv-full-800.webp" srcset="/assets/img/courses/dpv-full-400.webp 400w, /assets/img/courses/dpv-full-800.webp 800w" sizes="(max-width: 991px) calc(100vw - 24px), (min-width: 1400px) 520px, 445px" alt="GUE DPV 1" />
       </figure>
     </div>
   </div>
@@ -172,6 +170,13 @@
             <li><a class="link-arrow" href="/2026/06/23/DPV-The-trigger-is-the-easy-part.html" data-umami-event="course-page-post" data-umami-event-course="gue-dpv-1">The Trigger Is the Easy Part</a></li>
           </ul>
         </section>
+        <section class="course-prep" id="preparation" aria-labelledby="prep-title">
+          <p class="kicker" id="prep-title">Preparation</p>
+          <p class="prep-teaser">What you need for the course, paperwork and gear, is on a separate page that you can print or save as a PDF.</p>
+          <p class="prep-rent">If you don't have your own scooter, you can rent one.</p>
+          <p class="prep-rent">If you're missing something, we can usually lend it to you.</p>
+          <a class="btn btn-outline-primary" href="/pages/gue-dpv-1-preparation_en.html" data-umami-event="course-page-prep" data-umami-event-course="gue-dpv-1">To the preparation page</a>
+        </section>
       </article>
 
       <aside class="course-card" id="preise" aria-label="Prices and dates">
@@ -196,7 +201,7 @@
           <li data-end="2027-07-18">
             <a href="/pages/contact_en.html?message=Hi+Christof%2C+I+am+interested+in+this+date%3A+GUE+DPV+1%2C+16%E2%80%9318+Jul+2027" data-umami-event="course-page-date" data-umami-event-course="gue-dpv-1">
               <span class="cc-date">16–18 Jul 2027</span>
-              <span class="cc-date-meta">Fri–Sun · 3 days · 3 spots left</span>
+              <span class="cc-date-meta">Fri–Sun · 3 days · Spots available</span>
               <span class="cc-date-ask">Enquire</span>
             </a>
           </li>
@@ -204,6 +209,7 @@
         
         <p class="cc-dates-empty" hidden>No fixed date in the calendar right now. I'm happy to arrange one with you.</p>
         <p class="cc-wish"><a class="link-arrow" href="/pages/contact_en.html?message=Hi+Christof%2C+I+would+like+a+date+for+the+following+course%3A+GUE+DPV+1" data-umami-event="course-page-wish">Ask for a date</a> <a class="link-arrow" href="/pages/termine_en.html">All course dates</a></p>
+        <p class="cc-wish"><a class="link-arrow" href="/pages/gue-dpv-1-preparation_en.html" data-umami-event="course-page-prep-card" data-umami-event-course="gue-dpv-1">Preparation</a></p>
 
         <div class="cc-actions">
           <a class="btn btn-primary btn-xl cc-ask" data-umami-event="course-page-enquiry" data-umami-event-course="gue-dpv-1" href="/pages/contact_en.html?message=Hi+Christof%2C+I%27m+interested+in%3A+GUE+DPV+1">Enquire about this course</a>
@@ -278,16 +284,16 @@
           
           <li class="list-inline-item">
             
-            <a href="https://www.facebook.com/christof.muller.735">
-              <i class="fab fa-facebook-f"></i>
+            <a href="https://www.facebook.com/christof.muller.735" aria-label="Facebook">
+              <svg class="svg-icon svg-icon-brand-facebook" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3" /></svg>
             </a>
             
           </li>
           
           <li class="list-inline-item">
             
-            <a href="https://www.instagram.com/christof.mueller">
-              <i class="fab fa-instagram"></i>
+            <a href="https://www.instagram.com/christof.mueller" aria-label="Instagram">
+              <svg class="svg-icon svg-icon-brand-instagram" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 4m0 4a4 4 0 0 1 4 -4h8a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-8a4 4 0 0 1 -4 -4z" /> <path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /> <path d="M16.5 7.5l0 .01" /></svg>
             </a>
             
           </li>
