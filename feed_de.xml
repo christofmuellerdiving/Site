@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="de">
+  <title>thinking-diver.com Blog (Deutsch)</title>
+  <subtitle>Technisches Tauchen, Sidemount und GUE: Artikel von Christof Müller-Schmahl</subtitle>
+  <link href="https://www.thinking-diver.com/feed_de.xml" rel="self" type="application/atom+xml" />
+  <link href="https://www.thinking-diver.com/pages/blog_de.html" rel="alternate" type="text/html" />
+  <id>https://www.thinking-diver.com/feed_de.xml</id>
+  <updated>2026-10-18T00:00:00+00:00</updated>
+  <author>
+    <name>Christof Müller-Schmahl</name>
+    <uri>https://www.thinking-diver.com/pages/about_de.html</uri>
+  </author>
+  <entry>
+    <title>Breakaway oder fest: der Boltsnap am Longhose</title>
+    <link href="https://www.thinking-diver.com/2026/10/18/breakaway-oder-fester-boltsnap.html" rel="alternate" type="text/html" />
+    <id>https://www.thinking-diver.com/2026/10/18/breakaway-oder-fester-boltsnap.html</id>
+    <published>2026-10-18T00:00:00+00:00</published>
+    <updated>2026-10-18T00:00:00+00:00</updated>
+    <summary>Breakaway oder fest angeknoteter Boltsnap am Longhose im Sidemount: was für die Sollbruchstelle spricht, was dagegen und was in der Höhle anders ist.</summary>
+    <link href="https://www.thinking-diver.com/assets/img/blog/longhose-boltsnap.jpg" rel="enclosure" />
+  </entry>
+  <entry>
+    <title>Sidemount-Flaschen: Alu oder Stahl, welche Größe?</title>
+    <link href="https://www.thinking-diver.com/2026/10/04/sidemount-flaschenwahl.html" rel="alternate" type="text/html" />
+    <id>https://www.thinking-diver.com/2026/10/04/sidemount-flaschenwahl.html</id>
+    <published>2026-10-04T00:00:00+00:00</published>
+    <updated>2026-10-04T00:00:00+00:00</updated>
+    <summary>Sidemount-Flaschen im Vergleich. AL80, 12-l-Leichtstahl und 7-l-Alu mit Auftriebsverlauf, Bleimenge und Trim, und welche Flasche sich im kalten See bewährt.</summary>
+    <link href="https://www.thinking-diver.com/assets/img/blog/sidemount-flaschenwahl.jpeg" rel="enclosure" />
+  </entry>
+  <entry>
+    <title>Die Kunst, langsamer zu werden</title>
+    <link href="https://www.thinking-diver.com/2026/08/18/Die-Kunst,-langsamer-zu-werden.html" rel="alternate" type="text/html" />
+    <id>https://www.thinking-diver.com/2026/08/18/Die-Kunst,-langsamer-zu-werden.html</id>
+    <published>2026-08-18T00:00:00+00:00</published>
+    <updated>2026-08-18T00:00:00+00:00</updated>
+    <summary>Warum die meisten Taucher arbeiten statt zu gleiten. Über Gleitphase, bewusste Handgriffe im Sidemount und die Bewusstheit, die erst aus echtem Können entsteht.</summary>
+    <link href="https://www.thinking-diver.com/assets/img/blog/slowissmooth.jpg" rel="enclosure" />
+  </entry>
+  <entry>
+    <title>Silent Rituals of Divers</title>
+    <link href="https://www.thinking-diver.com/2026/07/27/silent-rituals-of-divers.html" rel="alternate" type="text/html" />
+    <id>https://www.thinking-diver.com/2026/07/27/silent-rituals-of-divers.html</id>
+    <published>2026-07-27T00:00:00+00:00</published>
+    <updated>2026-07-27T00:00:00+00:00</updated>
+    <summary>Der Pre-Dive-Check ist kein Formalakt, sondern der erste Teil des Tauchgangs. Über Al Seif, GUE EDGE, mentale Simulation und das letzte Schweigen vor dem Einstieg.</summary>
+    <link href="https://www.thinking-diver.com/assets/img/blog/silent-rituals-of-divers.jpg" rel="enclosure" />
+  </entry>
+  <entry>
+    <title>Navigation: Wiederfinden ist keine Glückssache</title>
+    <link href="https://www.thinking-diver.com/2026/07/14/Navigation-Wiederfinden-ist-keine-Gl%C3%BCckssache.html" rel="alternate" type="text/html" />
+    <id>https://www.thinking-diver.com/2026/07/14/Navigation-Wiederfinden-ist-keine-Gl%C3%BCckssache.html</id>
+    <published>2026-07-14T00:00:00+00:00</published>
+    <updated>2026-07-14T00:00:00+00:00</updated>
+    <summary>GUE Navigation Primer bei Deepstop Schwetzingen: Kompass, natürliche Navigation, Spool und Kartierung, dazu der Erfahrungsbericht einer Teilnehmerin.</summary>
+    <link href="https://www.thinking-diver.com/assets/img/blog/Navigation.jpeg" rel="enclosure" />
+  </entry>
+  <entry>
+    <title>Der Trigger ist der einfachste Teil</title>
+    <link href="https://www.thinking-diver.com/2026/06/23/dpv-der-trigger-ist-der-einfachste-teil.html" rel="alternate" type="text/html" />
+    <id>https://www.thinking-diver.com/2026/06/23/dpv-der-trigger-ist-der-einfachste-teil.html</id>
+    <published>2026-06-23T00:00:00+00:00</published>
+    <updated>2026-06-23T00:00:00+00:00</updated>
+    <summary>Was Scooter- und DPV-Tauchen wirklich verlangt: Awareness, Gasplanung, Notfälle und Trim im Sidemount, und warum das Fundament vor der Maschine kommt.</summary>
+    <link href="https://www.thinking-diver.com/assets/img/blog/dpv-trigger-og.jpeg" rel="enclosure" />
+  </entry>
+  <entry>
+    <title>GUE Fundamentals oder TDI Intro to Tech? Auch das ist die falsche Frage</title>
+    <link href="https://www.thinking-diver.com/2026/06/09/GUE-Fundamentals-oder-TDI-Intro-to-Tech.html" rel="alternate" type="text/html" />
+    <id>https://www.thinking-diver.com/2026/06/09/GUE-Fundamentals-oder-TDI-Intro-to-Tech.html</id>
+    <published>2026-06-09T00:00:00+00:00</published>
+    <updated>2026-06-09T00:00:00+00:00</updated>
+    <summary>GUE Fundamentals und TDI Intro to Tech im Vergleich: Voraussetzungen, Theorie und Ausrüstung, und warum Sidemount kein „Tech light“ ist.</summary>
+    <link href="https://www.thinking-diver.com/assets/img/blog/fundointro.jpg" rel="enclosure" />
+  </entry>
+  <entry>
+    <title>Mir fehlt etwas: vom OWD zum Sidewinder</title>
+    <link href="https://www.thinking-diver.com/2026/06/08/vom-owd-zum-sidewinder.html" rel="alternate" type="text/html" />
+    <id>https://www.thinking-diver.com/2026/06/08/vom-owd-zum-sidewinder.html</id>
+    <published>2026-06-08T00:00:00+00:00</published>
+    <updated>2026-06-08T00:00:00+00:00</updated>
+    <summary>Vom Open-Water-Kurs zum Cave-CCR: 15 Jahre technisches Tauchen, GUE Fundamentals und warum es in der Sidemount-Ausbildung auf den Unterricht ankommt.</summary>
+    <link href="https://www.thinking-diver.com/assets/img/blog/owd-zum-sidewinder.jpg" rel="enclosure" />
+  </entry>
+  <entry>
+    <title>Backmount oder Sidemount: die falsche Frage</title>
+    <link href="https://www.thinking-diver.com/2026/06/03/Backmount-oder-Sidemount-die-falsche-Frage.html" rel="alternate" type="text/html" />
+    <id>https://www.thinking-diver.com/2026/06/03/Backmount-oder-Sidemount-die-falsche-Frage.html</id>
+    <published>2026-06-03T00:00:00+00:00</published>
+    <updated>2026-06-03T00:00:00+00:00</updated>
+    <summary>“Jedes System ist ein Werkzeug. Wer das vergisst, kauft den falschen Hammer.”</summary>
+    <link href="https://www.thinking-diver.com/assets/img/blog/f8509596-1425-4609-a389-666790551c6d.jpeg" rel="enclosure" />
+  </entry>
+  <entry>
+    <title>Ausrüstung kaufen statt üben: warum das im Sidemount nach hinten losgeht</title>
+    <link href="https://www.thinking-diver.com/2025/05/25/ausruestung-kaufen-statt-ueben.html" rel="alternate" type="text/html" />
+    <id>https://www.thinking-diver.com/2025/05/25/ausruestung-kaufen-statt-ueben.html</id>
+    <published>2025-05-25T00:00:00+00:00</published>
+    <updated>2025-05-25T00:00:00+00:00</updated>
+    <summary>Warum Gadgets keine Skill-Probleme lösen, und was im Sidemount wirklich hilft.</summary>
+    <link href="https://www.thinking-diver.com/assets/img/blog/blog1.jpeg" rel="enclosure" />
+  </entry>
+</feed>
+
