@@ -2969,6 +2969,69 @@ section#contact h1.section-heading {
   margin-bottom: 40px;
 }
 
+.why .section-heading {
+  margin-bottom: 16px;
+}
+
+.why-lead {
+  max-width: 680px;
+  margin: 0 auto 40px;
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: #3d5a6e;
+}
+
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+@media (max-width: 767px) {
+  .why-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.why-item {
+  background: #fff;
+  border: 1px solid #d6d0c4;
+  border-top: 3px solid #37b4aa;
+  padding: 28px 28px 24px;
+}
+.why-item p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #1e2530;
+  margin: 0 0 14px;
+}
+
+.why h3.why-title {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: 0;
+  text-transform: none;
+  color: #0d3451;
+  margin: 0 0 10px;
+}
+
+.why-note {
+  max-width: 680px;
+  margin: 28px auto 0;
+  text-align: center;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #3d5a6e;
+}
+
+@media (max-width: 575px) {
+  .why-item {
+    padding: 22px 20px 18px;
+  }
+}
 .start-help {
   max-width: 680px;
   margin: 28px auto 0;
