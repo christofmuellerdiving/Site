@@ -1753,6 +1753,53 @@ ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons l
     grid-template-columns: 1fr;
   }
 }
+#about .about-story {
+  line-height: 1.5;
+}
+
+#about .about-story .link-arrow {
+  display: inline;
+}
+#about .about-story .link-arrow::after {
+  display: inline-block;
+  margin-left: 8px;
+}
+
+@media (max-width: 575px) {
+  .why + #about {
+    padding-top: 48px;
+  }
+  #about .section-subheading {
+    margin-bottom: 24px;
+  }
+  #about .team-member {
+    margin-bottom: 28px;
+  }
+  #about .team-member img {
+    width: 144px;
+    height: 144px;
+  }
+  .fact-row.fact-row-sm2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .fact-row.fact-row-sm2 .fact-hide-sm {
+    display: none;
+  }
+  .fact-row.fact-row-sm2 div {
+    padding: 16px 8px;
+  }
+  .fact-row.fact-row-sm2 strong {
+    font-size: 1.6rem;
+  }
+  .fact-row.fact-row-sm2 span {
+    display: block;
+    margin-top: 4px;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    hyphens: auto;
+    overflow-wrap: anywhere;
+  }
+}
 .course-path {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
